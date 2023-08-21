@@ -1,10 +1,13 @@
 @use '../../styles/variables';
 
 .header {
-  margin: 1rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 2rem 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
 
   .header--burger-menu {
     display: none;

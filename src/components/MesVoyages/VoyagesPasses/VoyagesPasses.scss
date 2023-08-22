@@ -1,0 +1,76 @@
+@use '../../../styles/variables';
+
+.mes-voyages--passes {
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1rem;
+    border-bottom: 1.3px solid variables.$darkBlue;
+    padding-bottom: 10px;
+
+  }
+}
+
+.mes-voyages--passes-list {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 2rem;
+  margin-bottom: 7rem;
+  
+  .mes-voyages--passes-card {
+    display: flex;
+    flex-direction: column;
+  
+    img {
+      width: auto;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.03);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  
+    .mes-voyages--passes-infos{
+      margin: 0 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: variables.$darkBlue;
+  
+      .mes-voyages--passes-text{
+        h3{
+          margin: 0.5rem 0;
+          font-size: 20px;
+          font-weight: 600;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        p{
+          font-size: 12px;
+        }
+      }
+  
+      .mes-voyages--passes-icons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+        .delete-icon{
+          cursor: pointer;
+          color: darkred;
+        }
+        .eye-icon {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

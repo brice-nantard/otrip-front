@@ -1,0 +1,74 @@
+@use '../../styles/variables';
+
+.create-trip {
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+
+  .create-trip--cover {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    p {
+      position: absolute;
+      width: 100%;
+      padding: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: variables.$darkBlue;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-align: center;
+      font-size: 30px;
+      z-index: 1;
+      background-color: rgb(255, 255, 255);
+    }
+  }
+
+  .create-trip--form {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+    margin-top: 3rem;
+    label {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1.5px solid variables.$darkBlue;
+      font-size: 16px;
+      font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+      margin: 20px 0;
+      &:focus {
+        border: 2px solid variables.$darkBlue;
+      }
+    }
+    button {
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      background-color: variables.$darkBlue;
+      color: white;
+      font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+      cursor: pointer;
+      &:hover {
+        background-color: white;
+        border: 1px solid variables.$darkBlue;
+        color: variables.$darkBlue;
+        font-weight: 700;
+      }
+    }
+  }
+}

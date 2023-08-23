@@ -13,7 +13,6 @@ const LoginForm = () => {
       <div className="right-side-form">
         <div className="login-title">
           <h1>Se connecter</h1>
-          <img src="../../src/assets/logo-mobile.png" alt="login icon" />
         </div>
 
         <form

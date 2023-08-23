@@ -17,7 +17,6 @@ const CreateAccount = () => {
             <h1>Je crée mon compte</h1>
             <NavLink to="/login" className="login-link">J'ai déjà un compte &#62;</NavLink>
           </div>
-          <img src="../../src/assets/logo-mobile.png" alt="login icon" />
         </div>
 
         <form

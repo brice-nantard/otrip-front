@@ -4,12 +4,12 @@
   margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  // height: fit-content;
 
   .create-trip--cover {
-    position: relative;
     width: 100%;
     overflow: hidden;
+    position: relative;
     img {
       width: 100%;
       height: 250px;
@@ -27,7 +27,7 @@
       font-weight: 700;
       text-align: center;
       font-size: 30px;
-      z-index: 1;
+      // z-index: 1;
       background-color: rgb(255, 255, 255);
     }
   }
@@ -70,5 +70,34 @@
         font-weight: 700;
       }
     }
+  }
+
+  @media screen and (max-width: 1300px) {
+  .create-trip--cover {
+    img {
+      height: 200px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  .create-trip--form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    label {
+      font-size: 16px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    .create-trip--form--input {
+      width: 100%;
+      padding: 8px 0;
+    }
+  }
   }
 }

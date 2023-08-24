@@ -5,7 +5,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 
-const Header = ({title}) => {
+const Header = () => {
   return (
     <header className="header">
       <div className="header-logo">
@@ -13,7 +13,7 @@ const Header = ({title}) => {
       </div>
 
       <div className="header-title">
-        <h1>{title}</h1>
+        <h1>Planificateur de voyage</h1>
       </div>
 
       <div className="header-menu">

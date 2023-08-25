@@ -1,0 +1,102 @@
+@use '../../styles/variables';
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+
+  .home-page--cover {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+    }
+    p {
+      position: absolute;
+      width: 100%;
+      padding: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      font-size: 30px;
+      z-index: 1;
+      background-color: rgba(44, 44, 44, 0.47);
+    }
+  }
+  
+  .home-page--favorites-title {
+    margin-top: 3rem;
+    margin-left: 1rem;
+    h1 {
+      color: variables.$darkBlue;
+      font-size: 22px;
+      font-weight: 700;
+    }
+  }
+  
+  .home-page--favorites {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 2rem;
+    margin-bottom: 7rem;
+
+    .home-page--favorites-card {
+      display: flex;
+      flex-direction: column;
+
+      .home-page--favorites-card-infos{
+        margin: 0 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: variables.$darkBlue;
+
+        .home-page--favorites-card-text{
+          h2{
+            margin: 0.5rem 0;
+            font-size: 20px;
+            font-weight: 600;
+            &:hover {
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+          p{
+            font-size: 12px;
+          }
+        }
+
+        .home-page--favorites-card-icons{
+          font-size: 18px;
+          .heart-icon{
+            cursor: pointer;
+            margin-right: 1.5rem;
+            color: darkred;
+          }
+          .eye-icon{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    img {
+      width: auto;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.03);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}

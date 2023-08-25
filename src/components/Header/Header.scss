@@ -7,13 +7,18 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   top: 0;
+
   width: 100%;
 
   .header--burger-menu {
     display: none;
   }
   
-  .header-logo img {
+  .header-logo {
+    width: 25%;
+
+    img {
+      padding-left: 5%;
       width: 175px;
       height: auto;
       margin-left: 1rem;
@@ -32,6 +37,7 @@
   .header-menu {
     display: flex;
     align-items: center;
+    width: 25%;
 
     .menu-items {
       display: flex;

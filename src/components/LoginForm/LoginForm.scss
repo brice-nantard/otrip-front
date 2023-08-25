@@ -18,7 +18,7 @@
 
   .right-side-form {
     margin: 0 8rem;
-    width: 50%;
+    width: 80%;
     height: 100%;
     flex: 1;
     display: flex;
@@ -83,6 +83,7 @@
       gap: 1rem;
 
       .btn-connexion {
+        width: 100%;
         font-family: 'Quicksand', 'Helvetica', arial, sans-serif;
         height: 100%;
         border-radius: 5px;
@@ -94,6 +95,7 @@
         padding: 15px 0;
       }
       .btn-createAccount {
+        width: 100%;
         font-family: 'Quicksand', 'Helvetica', arial, sans-serif;
         height: 100%;
         border-radius: 5px;
@@ -106,6 +108,47 @@
         &:hover {
           background-color: variables.$yellow;
           color: #fff;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .login-form {
+      flex-direction: column;
+    }
+    .left-side-img {
+      display: none;
+    }
+    .right-side-form {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .login-form {
+      flex-direction: column;
+      margin-top: 3rem;
+    }
+    .left-side-img {
+      display: none;
+    }
+    .right-side-form {
+      margin: 3rem 2rem;
+      width: 100%;
+      .login-title h1 {
+        font-size: 20px;
+      }
+      form {
+        label {
+          font-size: 14px;
+        }
+        input {
+          font-size: 14px;
+          padding: 0.8rem;
+          font-size: 14px;
+        }
+        .forgeted-password {
+          font-size: 12px;
         }
       }
     }

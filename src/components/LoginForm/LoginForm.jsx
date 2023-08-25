@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './LoginForm.scss';
 
 const LoginForm = () => {
@@ -13,7 +13,6 @@ const LoginForm = () => {
       <div className="right-side-form">
         <div className="login-title">
           <h1>Se connecter</h1>
-          <img src="../../src/assets/logo-mobile.png" alt="login icon" />
         </div>
 
         <form
@@ -31,7 +30,9 @@ const LoginForm = () => {
 
           <div className="login-form-btn">
             <button type="submit" className="btn-connexion">Se connecter</button>
-            <button type="submit" className="btn-createAccount">Créer un compte</button>
+            <Link to="/creer-un-compte">
+              <button type="submit" className="btn-createAccount">Créer un compte</button>
+            </Link>
           </div>
           
         </form>

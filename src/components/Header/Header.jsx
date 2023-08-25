@@ -26,13 +26,13 @@ const Header = () => {
         className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>
         <ul className="menu-items">
           <li className="menu-item">
-            <NavLink className="menu-link" to="#">Accueil</NavLink>
+            <NavLink className="menu-link" to="/">Accueil</NavLink>
           </li>
           <li className="menu-item">
-            <NavLink className="menu-link" to="#">Créer un compte</NavLink>
+            <NavLink className="menu-link" to="/creer-un-compte">Créer un compte</NavLink>
           </li>
           <li className="menu-item">
-            <NavLink className="menu-link-login" to="#">Se connecter</NavLink>
+            <NavLink className="menu-link-login" to="/se-connecter">Se connecter</NavLink>
           </li>
         </ul>
       </div>

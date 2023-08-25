@@ -15,7 +15,7 @@ const CreateAccount = () => {
         <div className="create-acount--title">
           <div className="title">
             <h1>Je crée mon compte</h1>
-            <NavLink to="/login" className="login-link">J'ai déjà un compte &#62;</NavLink>
+            <NavLink to="/se-connecter" className="login-link">J'ai déjà un compte &#62;</NavLink>
           </div>
         </div>
 

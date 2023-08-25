@@ -5,16 +5,20 @@
   justify-content: space-between;
   align-items: center;
   margin: 2rem 0;
-  top: 0;
   width: 100%;
 
   .header--burger-menu {
     display: none;
   }
   
-  .header-logo img {
+  .header-logo {
+    width: 25%;
+
+    img {
+      padding-left: 5%;
       width: 175px;
       height: auto;
+    } 
   }
 
   .header-title {
@@ -26,6 +30,7 @@
   .header-menu {
     display: flex;
     align-items: center;
+    width: 25%;
 
     .menu-items {
       display: flex;

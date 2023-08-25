@@ -13,7 +13,7 @@ const Header = () => {
       </div>
 
       <div className="header-title">
-        <h1>PLANIFICATEUR DE VOYAGES</h1>
+        <h1>Planificateur de voyage</h1>
       </div>
 
       <div className="header-menu">

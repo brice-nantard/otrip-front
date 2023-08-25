@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
-import { SUBMIT_LOGIN } from "../actions/user";
+import { SUBMIT_LOGIN, handleSuccessfulLogin } from "../actions/user";
 
 const authMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -13,7 +13,11 @@ const authMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
+          // on veut enregistrer les infos de l'utilisateur dans le state
+          store.dispatch(
+            handleSuccessfulLogin(response.data.pseudo, response.data.token)
+          );
         })
         .catch((error) => {
           console.log(error);

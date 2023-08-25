@@ -14,8 +14,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
-    const { newValue, name } = event.target;
-    const action = changeLoginField(newValue, name);
+    const { name, newValue } = event.target;
+    const action = changeLoginField(name, newValue);
     dispatch(action);
   };
 
@@ -24,7 +24,7 @@ const LoginForm = () => {
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
     dispatch(submitLogin());
-  }
+  };
 
   return (
     <div className="login-form">

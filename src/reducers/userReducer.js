@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-else-return */
-import { CHANGE_LOGIN_FIELD } from "../actions/user";
+import { CHANGE_LOGIN_FIELD, HANDLE_SUCCESSFUL_LOGIN } from "../actions/user";
 
 const EMAIL_FIELD = 'email';
 const PASSWORD_FIELD = 'password';
@@ -34,6 +34,18 @@ const userReducer = (state = initialState, action = {}) => {
         }
       }
       return state;
+
+    case HANDLE_SUCCESSFUL_LOGIN:
+      return {
+        ...state,
+        logged: true,
+        pseudo: action.pseudo,
+        token: action.token,
+        // sécurité : on efface les identifiants dès qu'on en a plus besoin
+        email: '',
+        password: '',
+      };
+
     default:
       return state;
   }

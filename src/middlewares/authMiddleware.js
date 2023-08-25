@@ -7,6 +7,7 @@ const authMiddleware = (store) => (next) => (action) => {
     case SUBMIT_LOGIN:
       axios
         .post(
+          'http://localhost:3001/login',
           {
             email: store.getState().user.email,
             password: store.getState().user.password,

@@ -14,8 +14,8 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
-    const { name, newValue } = event.target;
-    const action = changeLoginField(name, newValue);
+    const { name, value } = event.target;
+    const action = changeLoginField(name, value);
     dispatch(action);
   };
 

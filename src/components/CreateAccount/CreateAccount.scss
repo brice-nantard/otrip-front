@@ -1,0 +1,94 @@
+@use '../../styles/variables';
+
+.create-account {
+  display: flex;
+  margin-bottom: 6rem;
+  align-items: center;
+  
+  .left-side-img {
+    flex: 1;
+    width: 50%;
+    height: 100%;
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .right-side-form {
+    margin: 0 5rem;
+    width: 50%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .create-acount--title {
+      display: flex;
+      font-size: 30px;
+      font-weight: 600;
+      align-items: center;
+      justify-content: space-between;
+      color: variables.$darkBlue;
+
+      .login-link {
+        font-size: 16px;
+        font-weight: 400;
+        &:hover{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      img {
+        width: 20%;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 20px;
+
+      label {
+        font-weight: 600;
+        color: variables.$darkBlue;
+        padding-bottom: 10px;
+      }
+      .label {
+        padding-top: 1.5rem;
+      }
+
+      input {
+        padding: 0.8rem;
+        border-radius: 5px;
+        width: 100%;
+        border: 2px solid variables.$darkBlue;
+        font-size: 1.2em;
+        &:focus {
+          border-color: variables.$lightBlue;
+        }
+      }
+    }
+
+    .login-form-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 2rem;
+
+      .btn-valider {
+        font-family: 'Quicksand', 'Helvetica', arial, sans-serif;
+        height: 100%;
+        border-radius: 5px;
+        border: none;
+        background-color: variables.$darkBlue;
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 15px 0;
+      }
+    }
+  }
+}

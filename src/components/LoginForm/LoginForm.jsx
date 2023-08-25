@@ -22,10 +22,10 @@ const LoginForm = () => {
           action="/login"
         >
           <label className="email-label" htmlFor="email">Adresse e-mail</label>
-          <input type="email" name="email" />
+          <input type="email" name="email" required />
 
           <label className="password-label" htmlFor="email">Mot de passe</label>
-          <input type="password" name="password" />
+          <input type="password" name="password" required />
 
           <NavLink className="forgeted-password" to="/">Mot de passe oublié &#62;</NavLink>
 

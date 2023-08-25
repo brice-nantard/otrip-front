@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../Header/Header';
@@ -9,8 +10,7 @@ import CreateTrip from '../CreateTrip/CreateTrip';
 import Activity from '../Activity/Activity';
 import Error from '../Error/Error';
 import Footer from '../Footer/Footer';
-import Home from '../Pages/Home/Home';
-import Contact from '../Pages/Contact/Contact';
+import Contact from '../Contact/Contact';
 import './App.scss';
 
 function App() {

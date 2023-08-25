@@ -1,10 +1,10 @@
-import React from "react"
+/* eslint-disable prettier/prettier */
+import React from "react";
 
 import './Contact.scss';
 
-export default function (props) {
+const Contact = () => {
     return (
-
         <div className="container contact-form d-flex">
             <div className="contact-image">
                 <img src="src/assets/logo-terre_otrip.png" alt="otriplogo" />
@@ -40,4 +40,6 @@ export default function (props) {
             </div>
         </div>
     )
-}
+};
+
+export default Contact;

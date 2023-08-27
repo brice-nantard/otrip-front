@@ -11,9 +11,10 @@ import Activity from '../Activity/Activity';
 import Error from '../Error/Error';
 import Footer from '../Footer/Footer';
 import Contact from '../Contact/Contact';
+import UserAccount from '../UserAccount/UserAccount';
 import './App.scss';
 
-function App() {
+const App = () => {
   return (
     <div>
       <Header /> 
@@ -23,6 +24,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/se-connecter" element={<LoginForm />} />
           <Route path="/creer-un-compte" element={<CreateAccount />} />
+          <Route path="/mon-compte" element={<UserAccount />} />
           <Route path="/mes-voyages" element={<MesVoyages />} />
           <Route path="/creer-un-voyage" element={<CreateTrip />} />
           <Route path="/gestion-activite" element={<Activity />} />

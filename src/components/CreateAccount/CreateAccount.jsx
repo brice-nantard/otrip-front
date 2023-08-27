@@ -24,13 +24,13 @@ const CreateAccount = () => {
           method="POST"
           action=""
         >
-          <label className="label" htmlFor="email">Choisissez votre pseudo</label>
+          <label className="label" htmlFor="text">Choisissez votre pseudo</label>
           <input type="text" name="pseudo" />
           <label className="label" htmlFor="email">Votre e-mail</label>
           <input type="email" name="email" />
-          <label className="label" htmlFor="email">Choisissez votre mot de passe</label>
+          <label className="label" htmlFor="password">Choisissez votre mot de passe</label>
           <input type="password" name="password" />
-          <label className="label" htmlFor="email">Confirmez votre mot de passe</label>
+          <label className="label" htmlFor="password">Confirmez votre mot de passe</label>
           <input type="password" name="password" />
 
           <div className="login-form-btn">

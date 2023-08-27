@@ -2,17 +2,14 @@
 /* eslint-disable prettier/prettier */
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './LoginForm.scss';
 
-import { useState } from 'react';
 import { changeLoginField, submitLogin } from '../../actions/user';
 
 const LoginForm = () => {
   const emailValue = useSelector((state) => state.user.email);
   const passwordValue = useSelector((state) => state.user.password);
-
-  const [redirectTo, setRedirectTo] = useState('');
 
   const dispatch = useDispatch();
 
@@ -27,8 +24,7 @@ const LoginForm = () => {
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
     dispatch(submitLogin());
-    // après la soumission de la connexion, on rediriger vers la page mes voyages
-    setRedirectTo('/mes-voyages');
+    // après la soumission de la connexion, on redirige vers la page mes voyages
   };
 
   return (
@@ -80,7 +76,6 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-      {redirectTo && <Redirect to={redirectTo} />}
     </div>
   );
 };

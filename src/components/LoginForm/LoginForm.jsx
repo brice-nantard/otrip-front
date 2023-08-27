@@ -2,9 +2,9 @@
 /* eslint-disable prettier/prettier */
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Link, NavLink } from 'react-router-dom';
-import './LoginForm.scss';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
+import './LoginForm.scss';
 import { changeLoginField, submitLogin } from '../../actions/user';
 
 const LoginForm = () => {
@@ -12,6 +12,7 @@ const LoginForm = () => {
   const passwordValue = useSelector((state) => state.user.password);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,12 +20,13 @@ const LoginForm = () => {
     dispatch(action);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     // empeche le rechargement par défaut
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
-    dispatch(submitLogin());
+    await dispatch(submitLogin());
     // après la soumission de la connexion, on redirige vers la page mes voyages
+    navigate('/mes-voyages');
   };
 
   return (

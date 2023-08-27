@@ -7,7 +7,7 @@ const authMiddleware = (store) => (next) => (action) => {
     case SUBMIT_LOGIN:
       axios
         .post(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api',
+          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/login_check',
           {
             username: store.getState().user.username,
             password: store.getState().user.password,

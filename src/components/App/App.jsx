@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,6 @@ import './App.scss';
 
 const App = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() =>  {
     const storedToken = localStorage.getItem('token');
@@ -30,10 +29,8 @@ const App = () => {
     // sinon, on redirige vers la page de connexion
     if (storedToken && storedUsername) {
       dispatch(handleSuccessfulLogin(storedToken, storedUsername));
-    } else {
-      navigate('/se-connecter');
     }
-  });
+  }, [dispatch]);
 
   return (
     <div>

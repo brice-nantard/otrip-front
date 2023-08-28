@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { handleLogout } from '../../actions/user';
 
 const Header = () => {
@@ -44,7 +44,7 @@ const Header = () => {
       <div className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>
         <ul className="menu-items">
           <li className="menu-item">
-            <NavLink className="menu-link" to="/">Accueil</NavLink>
+            <Link className="menu-link" to="/">Accueil</Link>
           </li>
           {isLogged ? (
             <>
@@ -65,10 +65,10 @@ const Header = () => {
           ) : (
             <>
               <li className="menu-item">
-                <NavLink className="menu-link" to="/creer-un-compte">Créer un compte</NavLink>
+                <Link className="menu-link" to="/creer-un-compte">Créer un compte</Link>
               </li>
               <li className="menu-item">
-                <NavLink className="menu-link-login" to="/se-connecter">Se connecter</NavLink>
+                <Link className="menu-link-login" to="/se-connecter">Se connecter</Link>
               </li>
             </>
           )}

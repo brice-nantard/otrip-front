@@ -39,8 +39,8 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        token: action.token,
         // sécurité : on efface les identifiants dès qu'on en a plus besoin
+        token: '',
         username: '',
         password: '',
       };

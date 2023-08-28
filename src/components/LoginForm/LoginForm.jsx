@@ -27,6 +27,8 @@ const LoginForm = () => {
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
     await dispatch(submitLogin());
+    // redirige vers la page mes-voyages
+    navigate('/mes-voyages');
   };
 
   return (

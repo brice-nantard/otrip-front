@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
 import { SUBMIT_LOGIN, handleSuccessfulLogin } from '../actions/user';
 

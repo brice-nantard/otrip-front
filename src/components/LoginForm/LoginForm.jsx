@@ -29,11 +29,6 @@ const LoginForm = () => {
     await dispatch(submitLogin());
   };
 
-  const handleSuccessfulLogin = () => {
-    // après la soumission de la connexion, on redirige vers la page mes voyages
-    navigate('/mes-voyages');
-  }
-
   return (
     <div className="login-form">
 
@@ -74,7 +69,6 @@ const LoginForm = () => {
             <button
               type="submit"
               className="btn-connexion"
-              onClick={handleSuccessfulLogin}
             >
               Se connecter
             </button>

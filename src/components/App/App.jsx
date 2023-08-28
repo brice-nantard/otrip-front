@@ -34,7 +34,7 @@ const App = () => {
       navigate('/se-connecter');
     }
   });
-  
+
   return (
     <div>
       <Header /> 

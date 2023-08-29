@@ -14,8 +14,11 @@ const authMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          // console.log(response);
-          // on veut enregistrer les infos de l'utilisateur dans le state
+          // enregistrement des données dans le local storage
+          localStorage.setItem('username', response.data.username);
+          localStorage.setItem('token', response.data.token);
+          
+          // enregistrement dans le state
           store.dispatch(
             handleSuccessfulLogin(response.data.username, response.data.token)
           );

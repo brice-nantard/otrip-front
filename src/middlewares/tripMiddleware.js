@@ -15,9 +15,12 @@ const tripMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response);
+        // enregistrement des données dans le local storage
+          localStorage.setItem('trips', JSON.stringify(response.data));
+          console.log(response.data);
+          // console.log(response);
           store.dispatch(saveUserTrips(response.data));
-          console.log(store.getState());
+          // console.log(store.getState());
         })
         .catch((error) => {
           console.log(error);

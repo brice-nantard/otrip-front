@@ -8,7 +8,7 @@ export const initialState = {
 const tripReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SAVE_USER_TRIPS:
-      console.log(action.trip);
+      // console.log(action.trip);
       return {
         ...state,
         userTrips: action.trip,

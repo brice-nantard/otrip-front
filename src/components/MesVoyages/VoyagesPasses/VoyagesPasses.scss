@@ -1,13 +1,14 @@
 @use '../../../styles/variables';
 
 .mes-voyages--passes {
+  display: flex;
+  flex-direction: column;
   h2 {
     font-size: 1.3rem;
     font-weight: 600;
     margin: 1rem;
     border-bottom: 1.3px solid variables.$darkBlue;
     padding-bottom: 10px;
-
   }
 }
 

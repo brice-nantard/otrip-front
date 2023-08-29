@@ -2,14 +2,12 @@
 import { combineReducers } from 'redux';
 
 // import des différents reducers
-import tripReducer from './trip';
+import tripReducer from './tripReducer';
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   trip: tripReducer,
+  user: userReducer,
 });
-
-/*
-mise en place des tiroirs
-*/
 
 export default rootReducer;

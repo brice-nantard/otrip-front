@@ -2,14 +2,18 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+
+  const isLogged = useSelector((state) => state.user.logged);
 
   return (
     <header className="header">
@@ -22,18 +26,32 @@ const Header = () => {
         <h1>Planificateur de voyage</h1>
       </div>
 
-      <div
-        className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>
+      <div className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>
         <ul className="menu-items">
           <li className="menu-item">
             <NavLink className="menu-link" to="/">Accueil</NavLink>
           </li>
-          <li className="menu-item">
-            <NavLink className="menu-link" to="/creer-un-compte">Créer un compte</NavLink>
-          </li>
-          <li className="menu-item">
-            <NavLink className="menu-link-login" to="/se-connecter">Se connecter</NavLink>
-          </li>
+          {isLogged ? (
+            <>
+              <li className="menu-item">
+                <NavLink className="menu-link" to="/mes-voyages">Mes voyages</NavLink>
+              </li>
+              <li className="menu-item">
+                <NavLink className="menu-link" to="/mon-compte">
+                  <FontAwesomeIcon icon={faCircleUser} />
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="menu-item">
+                <NavLink className="menu-link" to="/creer-un-compte">Créer un compte</NavLink>
+              </li>
+              <li className="menu-item">
+                <NavLink className="menu-link-login" to="/se-connecter">Se connecter</NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
 

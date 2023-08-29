@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrashCan, faPenToSquare, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
@@ -52,9 +51,10 @@ const MesVoyages = ({ tripData }) => {
 MesVoyages.propTypes = {
   tripData: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number,
       destination: PropTypes.string.isRequired,
-      start_date: PropTypes.string.isRequired,
-      end_date: PropTypes.string.isRequired,
+      start_date: PropTypes.instanceOf(Date).isRequired,
+      end_date: PropTypes.instanceOf(Date).isRequired,
       picture: PropTypes.string,
     }).isRequired
   ).isRequired,

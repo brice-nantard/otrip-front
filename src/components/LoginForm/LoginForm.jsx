@@ -1,29 +1,34 @@
-/* eslint-disable @typescript-eslint/no-redeclare */
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-redeclare */
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Link, NavLink } from 'react-router-dom';
-import './LoginForm.scss';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
+import './LoginForm.scss';
 import { changeLoginField, submitLogin } from '../../actions/user';
 
 const LoginForm = () => {
-  const emailValue = useSelector((state) => state.user.email);
+  const emailValue = useSelector((state) => state.user.username);
   const passwordValue = useSelector((state) => state.user.password);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  // changement des champs du formulaire
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     const action = changeLoginField(name, value);
     dispatch(action);
   };
 
-  const handleSubmit = (event) => {
+  // après soumission du formulaire de connexion :
+  const handleSubmit = async (event) => {
     // empeche le rechargement par défaut
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
-    dispatch(submitLogin());
+    await dispatch(submitLogin());
+    // après la soumission de la connexion, on redirige vers la page mes voyages
+    navigate('/mes-voyages');
   };
 
   return (
@@ -73,10 +78,8 @@ const LoginForm = () => {
               <button type="submit" className="btn-createAccount">Créer un compte</button>
             </Link>
           </div>
-          
         </form>
       </div>
-
     </div>
   );
 };

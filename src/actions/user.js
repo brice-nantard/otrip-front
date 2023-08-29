@@ -17,8 +17,8 @@ export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
-export const handleSuccessfulLogin = (pseudo, token) => ({
+export const handleSuccessfulLogin = (username, token) => ({
   type: HANDLE_SUCCESSFUL_LOGIN,
-  pseudo,
+  username,
   token,
 });

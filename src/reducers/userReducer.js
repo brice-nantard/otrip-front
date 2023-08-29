@@ -8,11 +8,11 @@ const PASSWORD_FIELD = 'password';
 export const initialState = {
   logged: false,
   // contenu du champ email
-  email: '',
+  username: '',
   // contenu du champ mot de passe
   password: '',
   // pseudo de l'utilisateur (quand il est connecté)
-  pseudo: '',
+  // pseudo: '',
   // token JWT (quand l'utilisateur est connecté)
   token: '',
 };
@@ -25,7 +25,7 @@ const userReducer = (state = initialState, action = {}) => {
       if (name === EMAIL_FIELD) {
         return {
         ...state,
-          email: newValue,
+          username: newValue,
         };
       } else if (name === PASSWORD_FIELD) {
         return {
@@ -39,10 +39,9 @@ const userReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         logged: true,
-        pseudo: action.pseudo,
         token: action.token,
         // sécurité : on efface les identifiants dès qu'on en a plus besoin
-        email: '',
+        username: '',
         password: '',
       };
 

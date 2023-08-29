@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { handleLogout } from '../../actions/user';
 
 const Header = () => {
@@ -20,12 +20,12 @@ const Header = () => {
   const isLogged = useSelector((state) => state.user.logged);
 
   // gestion de la déconnexion utilisateur au click sur l'icone off
-  const logout = () => {
+  const logout = async () => {
     // on supprime les infos dans le localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
-    dispatch(handleLogout());
+    await dispatch(handleLogout());
     // on redirige vers la page de login
     navigate('/se-connecter');
   };
@@ -44,7 +44,7 @@ const Header = () => {
       <div className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>
         <ul className="menu-items">
           <li className="menu-item">
-            <Link className="menu-link" to="/">Accueil</Link>
+            <NavLink className="menu-link" to="/">Accueil</NavLink>
           </li>
           {isLogged ? (
             <>
@@ -65,10 +65,10 @@ const Header = () => {
           ) : (
             <>
               <li className="menu-item">
-                <Link className="menu-link" to="/creer-un-compte">Créer un compte</Link>
+                <NavLink className="menu-link" to="/creer-un-compte">Créer un compte</NavLink>
               </li>
               <li className="menu-item">
-                <Link className="menu-link-login" to="/se-connecter">Se connecter</Link>
+                <NavLink className="menu-link-login" to="/se-connecter">Se connecter</NavLink>
               </li>
             </>
           )}

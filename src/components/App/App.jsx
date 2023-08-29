@@ -26,7 +26,6 @@ const App = () => {
     const storedToken = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
     // si les deux valeurs sont présentes dans le localStorage, la reconnexion se fera automatiquement
-    // sinon, on redirige vers la page de connexion
     if (storedToken && storedUsername) {
       dispatch(handleSuccessfulLogin(storedToken, storedUsername));
     }

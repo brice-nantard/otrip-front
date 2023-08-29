@@ -2,18 +2,33 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { handleLogout } from '../../actions/user';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   const isLogged = useSelector((state) => state.user.logged);
+
+  // gestion de la déconnexion utilisateur au click sur l'icone off
+  const logout = async () => {
+    // on supprime les infos dans le localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    // on dispatch l'action de déconnexion afin de réinitialiser le state
+    await dispatch(handleLogout());
+    // on redirige vers la page de login
+    navigate('/se-connecter');
+  };
 
   return (
     <header className="header">
@@ -39,6 +54,11 @@ const Header = () => {
               <li className="menu-item">
                 <NavLink className="menu-link" to="/mon-compte">
                   <FontAwesomeIcon icon={faCircleUser} />
+                </NavLink>
+              </li>
+              <li className="menu-item">
+                <NavLink className="menu-link" onClick={logout}>
+                  <FontAwesomeIcon icon={faPowerOff} />
                 </NavLink>
               </li>
             </>

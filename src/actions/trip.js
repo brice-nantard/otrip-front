@@ -1,13 +1,14 @@
 /* eslint-disable prettier/prettier */
 // actions en lien avec les voyages
-export const FETCH_TRIPS = 'FETCH_TRIPS';
-export const SAVE_TRIPS = 'SAVE_TRIPS';
+// action pour récupérer les voyages de l'utilisateur
+export const FETCH_USER_TRIPS = 'FETCH_USER_TRIPS';
+export const SAVE_USER_TRIPS = 'SAVE_USER_TRIPS';
 
-export const fetchRecipes = () => ({
-  type: FETCH_TRIPS,
+export const fetchUserTrips = () => ({
+  type: FETCH_USER_TRIPS,
 });
 
-export const saveTrips = (trips) => ({
-  type: SAVE_TRIPS,
-  trips,
+export const saveUserTrips = (trip) => ({
+  type: SAVE_USER_TRIPS,
+  trip,
 });

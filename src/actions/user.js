@@ -6,6 +6,8 @@ export const CHANGE_LOGIN_FIELD = 'CHANGE_LOGIN_FIELD';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 // en cas de succès de connexion, les infos de l'utilisateur sont enregistrée (token et pseudo)
 export const HANDLE_SUCCESSFUL_LOGIN = 'HANDLE_SUCCESSFUL_LOGIN';
+// action déclenchée à la déconnexion de l'utilisateur (vide le state)
+export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
 
 export const changeLoginField = (name, newValue) => ({
   type: CHANGE_LOGIN_FIELD,
@@ -21,4 +23,8 @@ export const handleSuccessfulLogin = (username, token) => ({
   type: HANDLE_SUCCESSFUL_LOGIN,
   username,
   token,
+});
+
+export const handleLogout = () => ({
+  type: HANDLE_LOGOUT,
 });

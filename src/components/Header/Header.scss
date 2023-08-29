@@ -45,7 +45,7 @@
       color: variables.$darkBlue;
 
       .menu-item {
-        margin-right: 30px;
+        margin-right: 20px;
         &:hover {
           font-weight: 700;
         }
@@ -73,7 +73,7 @@
 
   @media screen and (max-width: 1024px) {
     .header-title {
-      font-size: 1.5rem;      
+      font-size: 1rem;      
     }
     .header-menu .menu-items .menu-item {
       font-size: 12px;

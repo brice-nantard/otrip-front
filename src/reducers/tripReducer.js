@@ -1,20 +1,21 @@
 /* eslint-disable prettier/prettier */
-import { SAVE_TRIPS } from "../actions/trip";
+import { SAVE_USER_TRIPS } from "../actions/trip";
 
 export const initialState = {
-  list: [],
+  userTrips: [],
 };
 
-const reducer = (state = initialState, action = {}) => {
+const tripReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SAVE_TRIPS:
+    case SAVE_USER_TRIPS:
+      // console.log(action.trip);
       return {
         ...state,
-        list: action.trip,
+        userTrips: action.trip,
       };
     default:
       return state;
   }
 };
 
-export default reducer;
+export default tripReducer;

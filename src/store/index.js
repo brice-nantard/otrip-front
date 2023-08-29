@@ -12,7 +12,7 @@ import authMiddleware from '../middlewares/authMiddleware';
 const enhancers = composeWithDevTools(
   applyMiddleware(
     tripMiddleware,
-    authMiddleware,
+    authMiddleware
     // ... d'autres middlewares
   )
 );

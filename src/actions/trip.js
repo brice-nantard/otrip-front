@@ -4,6 +4,9 @@
 export const FETCH_USER_TRIPS = 'FETCH_USER_TRIPS';
 export const SAVE_USER_TRIPS = 'SAVE_USER_TRIPS';
 
+export const FETCH_HOME_TRIPS = 'FETCH_HOME_TRIPS';
+export const SAVE_HOME_TRIPS = 'SAVE_HOME_TRIPS';
+
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
@@ -11,4 +14,13 @@ export const fetchUserTrips = () => ({
 export const saveUserTrips = (trip) => ({
   type: SAVE_USER_TRIPS,
   trip,
+});
+
+export const fetchHomeTrips = () => ({
+  type: FETCH_HOME_TRIPS,
+});
+
+export const saveHomeTrips = (homeTrip) => ({
+  type: SAVE_HOME_TRIPS,
+  homeTrip,
 });

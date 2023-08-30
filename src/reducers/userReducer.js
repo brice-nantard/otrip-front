@@ -7,12 +7,12 @@ const PASSWORD_FIELD = 'password';
 
 export const initialState = {
   logged: false,
-  // contenu du champ email
+  // id de l'utilisateur
+  id: '',
+  // email de l'utilisateur
   username: '',
   // contenu du champ mot de passe
   password: '',
-  // pseudo de l'utilisateur (quand il est connecté)
-  // pseudo: '',
   // token JWT (quand l'utilisateur est connecté)
   token: '',
 };
@@ -43,6 +43,7 @@ const userReducer = (state = initialState, action = {}) => {
         token: '',
         username: '',
         password: '',
+        id: '',
       };
     
     case HANDLE_LOGOUT:
@@ -51,6 +52,7 @@ const userReducer = (state = initialState, action = {}) => {
         token: '',
         username: '',
         password: '',
+        id: '',
       };
 
     default:

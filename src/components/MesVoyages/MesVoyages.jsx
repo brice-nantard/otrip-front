@@ -9,6 +9,11 @@ import VoyagesPasses from './VoyagesPasses/VoyagesPasses';
 import './MesVoyages.scss';
 
 const MesVoyages = ({ tripData }) => {
+  // récupérer l'id de l'utilisateur connecté
+  const currentUserId = localStorage.getItem('id');
+  // filtrer les voyages liés à l'utilisateur connecté
+  const tripsOfCurrentUser = tripData.filter(trip => trip.user_id === currentUserId);
+
   return (
     <div className="mes-voyages">
       <h1>Mes Voyages</h1>
@@ -21,7 +26,7 @@ const MesVoyages = ({ tripData }) => {
           </span>
         </h2>
         <div className="mes-voyages--a-venir-list">
-          {tripData.map((trip) => (
+          {tripsOfCurrentUser.map((trip) => (
             <div className="mes-voyages--a-venir-card" key={trip.id}>
               {trip.picture && <img src={trip.picture} alt={trip.destination} />}
               <div className="mes-voyages--a-venir-infos">
@@ -51,12 +56,12 @@ const MesVoyages = ({ tripData }) => {
 MesVoyages.propTypes = {
   tripData: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string.isRequired,
       destination: PropTypes.string.isRequired,
-      start_date: PropTypes.instanceOf(Date).isRequired,
-      end_date: PropTypes.instanceOf(Date).isRequired,
+      start_date: PropTypes.string.isRequired,
+      end_date: PropTypes.string.isRequired,
       picture: PropTypes.string,
-    }).isRequired
+    }).isRequired,
   ).isRequired,
 };
 

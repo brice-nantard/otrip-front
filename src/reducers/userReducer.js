@@ -7,14 +7,14 @@ const PASSWORD_FIELD = 'password';
 
 export const initialState = {
   logged: false,
-  // id de l'utilisateur
-  id: '',
   // email de l'utilisateur
   username: '',
   // contenu du champ mot de passe
   password: '',
   // token JWT (quand l'utilisateur est connecté)
   token: '',
+  // id de l'utilisateur
+  id: '',
 };
 
 const userReducer = (state = initialState, action = {}) => {

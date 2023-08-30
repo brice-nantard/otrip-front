@@ -1,6 +1,7 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
-import { FETCH_HOME_TRIPS, FETCH_USER_TRIPS, saveHomeTrips, saveUserTrips } from '../actions/trip';
+import { FETCH_HOME_TRIPS, FETCH_USER_TRIPS, SUBMIT_CREATE_TRIP, saveHomeTrips, saveUserTrips } from '../actions/trip';
 
 const tripMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -41,6 +42,29 @@ const tripMiddleware = (store) => (next) => (action) => {
           // console.log(error);
         });
       break;
+    
+    case SUBMIT_CREATE_TRIP:
+      const newTrip = {
+        destination: store.getState().trip.destination,
+        departure_date: store.getState().trip.departure_date,
+        arrival_date: store.getState().trip.arrival_date,
+      };
+      axios
+      .post(
+        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/create/trip',
+        newTrip,
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      break;
+
+
+
+
     default:
   };
   // on passe l'action au suivant (middleware suivant ou reducer)

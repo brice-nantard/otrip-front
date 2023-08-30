@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrashCan, faPenToSquare, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
+import { NavLink } from 'react-router-dom';
 import VoyagesPasses from './VoyagesPasses/VoyagesPasses';
 
 import './MesVoyages.scss';
@@ -20,10 +21,13 @@ const MesVoyages = ({ tripData }) => {
       <div className="mes-voyages--a-venir">
         <h2 className="mes-voyages--a-venir-title">
           Mes voyages à venir
-          <span>
-          <FontAwesomeIcon className="add-trip-btn" icon={faCirclePlus} />
-          Planifier un nouveau voyage
-          </span>
+          <NavLink to="/creer-un-voyage">
+            <span>
+            <FontAwesomeIcon className="add-trip-btn" icon={faCirclePlus} />
+            Planifier un nouveau voyage
+            </span>
+          </NavLink>
+          
         </h2>
         <div className="mes-voyages--a-venir-list">
           {tripsOfCurrentUser.map((trip) => (

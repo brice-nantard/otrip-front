@@ -32,9 +32,10 @@ const App = () => {
     // récupération des identifiants de l'utilisateur depuis le localStorage
     const storedToken = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
+    const storedUserId = localStorage.getItem('userId');
     // si les deux valeurs sont présentes dans le localStorage, la reconnexion se fera automatiquement au refresh
     if (storedToken && storedUsername) {
-      dispatch(handleSuccessfulLogin(storedToken, storedUsername));
+      dispatch(handleSuccessfulLogin(storedToken, storedUsername, storedUserId));
     }
 
     // récupération des voyages de l'utilisateur connecté de la Home depuis le localStorage

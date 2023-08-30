@@ -20,7 +20,7 @@ const authMiddleware = (store) => (next) => (action) => {
           // enregistrement des données dans le local storage
           localStorage.setItem('username', response.data.username);
           localStorage.setItem('token', response.data.token);
-          localStorage.setItem('id', response.data.id);
+          localStorage.setItem('userId', response.data.id);
           
           // enregistrement dans le state
           store.dispatch(

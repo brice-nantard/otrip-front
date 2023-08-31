@@ -2,7 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { handleSuccessfulLogin } from '../../actions/user';
 import { fetchUserTrips, fetchHomeTrips } from '../../actions/trip';
@@ -21,6 +21,9 @@ import UserAccount from '../UserAccount/UserAccount';
 import './App.scss';
 
 const App = () => {
+  // mise en place de la protection de certaines routes si l'utilisateur n'est pas connecté
+  const isLogged = useSelector((state) => state.user.logged);
+
   const dispatch = useDispatch();
   // stocker les voyages de l'utilisateur dans le state
   const [tripData, setTripData] = useState([]);
@@ -55,20 +58,33 @@ const App = () => {
     
   }, [dispatch]);
 
-
+  // si l'utilisateur est connecté, il a accès à toutes les routes
+  // s'il n'est pas connecté, il a accès uniquement à Home, Contact, Error et se connecter et créer un compte
   return (
     <div>
       <Header /> 
         <Routes>
-          <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/se-connecter" element={<LoginForm />} />
-          <Route path="/creer-un-compte" element={<CreateAccount />} />
-          <Route path="/mon-compte" element={<UserAccount />} />
-          <Route path="/mes-voyages" element={<MesVoyages tripData={tripData} />} />
-          <Route path="/creer-un-voyage" element={<CreateTrip />} />
-          <Route path="/gestion-activite" element={<Activity />} />
+          {isLogged ? (
+            <>
+              <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Error />} />
+              <Route path="/se-connecter" element={<LoginForm />} />
+              <Route path="/creer-un-compte" element={<CreateAccount />} />
+              <Route path="/mon-compte" element={<UserAccount />} />
+              <Route path="/mes-voyages" element={<MesVoyages tripData={tripData} />} />
+              <Route path="/creer-un-voyage" element={<CreateTrip />} />
+              <Route path="/gestion-activite" element={<Activity />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Error />} />
+              <Route path="/se-connecter" element={<LoginForm />} />
+              <Route path="/creer-un-compte" element={<CreateAccount />} />
+            </>
+          )}
         </Routes>
       <Footer />
     </div>

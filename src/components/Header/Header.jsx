@@ -39,7 +39,7 @@ const Header = () => {
       </div>
 
       <div className="header-title">
-        <h1>Planificateur de voyage</h1>
+        <h1>Planificateur de voyages</h1>
       </div>
 
       <div className={isMenuExpanded ? "header-menu expanded" : "header-menu"}>

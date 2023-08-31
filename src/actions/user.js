@@ -23,7 +23,6 @@ export const handleSuccessfulLogin = (username, token, id) => ({
   type: HANDLE_SUCCESSFUL_LOGIN,
   username,
   token,
-  id,
 });
 
 export const handleLogout = () => ({

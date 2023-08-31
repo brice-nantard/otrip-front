@@ -13,18 +13,16 @@ const authMiddleware = (store) => (next) => (action) => {
           {
             username: store.getState().user.username,
             password: store.getState().user.password,
-            id: store.getState().user.id,
           }
         )
         .then((response) => {
           // enregistrement des données dans le local storage
           localStorage.setItem('username', response.data.username);
           localStorage.setItem('token', response.data.token);
-          localStorage.setItem('userId', response.data.id);
           
           // enregistrement dans le state
           store.dispatch(
-            handleSuccessfulLogin(response.data.username, response.data.token, response.data.id)
+            handleSuccessfulLogin(response.data.username, response.data.token)
           );
 
           // on veut récupérer les voyages de l'utilisatuer : on dispatch une action qui sera traité par le middleware des voyages

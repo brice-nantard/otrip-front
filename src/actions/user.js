@@ -19,10 +19,11 @@ export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
-export const handleSuccessfulLogin = (username, token) => ({
+export const handleSuccessfulLogin = (username, token, id) => ({
   type: HANDLE_SUCCESSFUL_LOGIN,
   username,
   token,
+  id,
 });
 
 export const handleLogout = () => ({

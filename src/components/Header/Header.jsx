@@ -24,6 +24,7 @@ const Header = () => {
     // on supprime les infos dans le localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('id');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
     await dispatch(handleLogout());
     // on redirige vers la page de login

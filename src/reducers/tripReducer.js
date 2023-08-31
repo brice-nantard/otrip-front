@@ -1,8 +1,18 @@
 /* eslint-disable prettier/prettier */
-import { SAVE_USER_TRIPS } from "../actions/trip";
+/* eslint-disable no-else-return */
+/* eslint-disable no-restricted-globals */
+import { SAVE_USER_TRIPS, SAVE_HOME_TRIPS, CHANGE_CREATE_TRIP_FIELD } from "../actions/trip";
+
+const DESTINATION_FIELD = 'destination';
+const START_DATE_FIELD = 'start_date';
+const END_DATE_FIELD = 'end_date';
 
 export const initialState = {
   userTrips: [],
+  homeTrips: [],
+  destination: '',
+  start_date: '',
+  end_date: '',
 };
 
 const tripReducer = (state = initialState, action = {}) => {
@@ -13,6 +23,34 @@ const tripReducer = (state = initialState, action = {}) => {
         ...state,
         userTrips: action.trip,
       };
+    
+    case SAVE_HOME_TRIPS:
+      // console.log(action.homeTrip);
+      return {
+        ...state,
+        homeTrips: action.homeTrip,
+      }
+    
+    case CHANGE_CREATE_TRIP_FIELD:
+      const name = action.name;
+      
+      if (name === DESTINATION_FIELD) {
+        return {
+          ...state,
+          destination: action.newValue,
+        };
+      } else if (name === START_DATE_FIELD) {
+        return {
+          ...state,
+          start_date: action.newValue,
+        };
+        } else if (name === END_DATE_FIELD) {
+          return {
+            ...state,
+            end_date: action.newValue,
+          }
+        }
+      return state;
     default:
       return state;
   }

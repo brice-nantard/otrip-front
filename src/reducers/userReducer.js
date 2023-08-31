@@ -43,7 +43,7 @@ const userReducer = (state = initialState, action = {}) => {
         token: '',
         username: '',
         password: '',
-        id: '',
+        // id: '',
       };
     
     case HANDLE_LOGOUT:

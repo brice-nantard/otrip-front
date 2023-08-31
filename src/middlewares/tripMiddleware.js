@@ -46,12 +46,12 @@ const tripMiddleware = (store) => (next) => (action) => {
     case SUBMIT_CREATE_TRIP:
       const newTrip = {
         destination: store.getState().trip.destination,
-        departure_date: store.getState().trip.departure_date,
-        arrival_date: store.getState().trip.arrival_date,
+        start_date: store.getState().trip.start_date,
+        end_date: store.getState().trip.end_date,
       };
       axios
       .post(
-        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/create/trip',
+        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/add',
         newTrip,
       )
       .then((response) => {
@@ -61,10 +61,6 @@ const tripMiddleware = (store) => (next) => (action) => {
         console.log(error);
       });
       break;
-
-
-
-
     default:
   };
   // on passe l'action au suivant (middleware suivant ou reducer)

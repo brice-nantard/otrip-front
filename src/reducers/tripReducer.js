@@ -4,15 +4,15 @@
 import { SAVE_USER_TRIPS, SAVE_HOME_TRIPS, CHANGE_CREATE_TRIP_FIELD } from "../actions/trip";
 
 const DESTINATION_FIELD = 'destination';
-const DEPARTURE_DATE_FIELD = 'departure_date';
-const ARRIVAL_DATE_FIELD = 'arrival_date';
+const START_DATE_FIELD = 'start_date';
+const END_DATE_FIELD = 'end_date';
 
 export const initialState = {
   userTrips: [],
   homeTrips: [],
   destination: '',
-  departure_date: '',
-  arrival_date: '',
+  start_date: '',
+  end_date: '',
 };
 
 const tripReducer = (state = initialState, action = {}) => {
@@ -25,7 +25,7 @@ const tripReducer = (state = initialState, action = {}) => {
       };
     
     case SAVE_HOME_TRIPS:
-      console.log(action.homeTrip);
+      // console.log(action.homeTrip);
       return {
         ...state,
         homeTrips: action.homeTrip,
@@ -39,15 +39,15 @@ const tripReducer = (state = initialState, action = {}) => {
           ...state,
           destination: action.newValue,
         };
-      } else if (name === DEPARTURE_DATE_FIELD) {
+      } else if (name === START_DATE_FIELD) {
         return {
           ...state,
-          departure_date: action.newValue,
+          start_date: action.newValue,
         };
-        } else if (name === ARRIVAL_DATE_FIELD) {
+        } else if (name === END_DATE_FIELD) {
           return {
             ...state,
-            arrival_date: action.newValue,
+            end_date: action.newValue,
           }
         }
       return state;

@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useDispatch, useSelector } from 'react-redux';
+import { format } from 'date-fns';
 
 import './CreateTrip.scss';
 import { changeCreateTripField, submitCreateTrip } from '../../actions/trip';
@@ -7,23 +8,34 @@ import { changeCreateTripField, submitCreateTrip } from '../../actions/trip';
 const CreateTrip = () => {
   const dispatch = useDispatch();
   const destination = useSelector((state) => state.trip.destination);
-  const departureDate = useSelector((state) => state.trip.departure_date);
-  const arrivalDate = useSelector((state) => state.trip.arrival_date);
+  const startDate = useSelector((state) => state.trip.start_date);
+  const endDate = useSelector((state) => state.trip.end_date);
+
+  // convertir une date fr en date en
+  const convertDateFormat = (date) => {
+    return format(new Date(date), 'yyyy-MM-dd');
+  };
   
   const handleChangeTripField = (event) => {
     const { name, value } = event.target;
-    dispatch(changeCreateTripField(name, value));
-  }
+    // si le champs est une date, convertir le format avant de stocker dans le state
+    if (name === 'start_date' || name === 'end_date') {
+      dispatch(changeCreateTripField(name, convertDateFormat(value)));
+    } else {
+      dispatch(changeCreateTripField(name, value));
+    }
+  };
 
   const handleSubmitCreateTrip = (event) => {
     event.preventDefault();
     const newTrip = {
       destination,
-      departureDate,
-      arrivalDate,
+      // Conversion pour l'envoi à l'API
+      startDate: convertDateFormat(startDate),
+      endDate: convertDateFormat(endDate),
     };
     dispatch(submitCreateTrip(newTrip));
-  }
+  };
 
   return (
     <div className="create-trip">
@@ -50,10 +62,10 @@ const CreateTrip = () => {
           <label htmlFor="date">Votre date de départ</label>
           <input
             type="date"
-            name="departure_date"
-            value={departureDate}
+            name="start_date"
+            value={startDate}
             onChange={handleChangeTripField}
-            id="departure_date"
+            id="start_date"
             required
           />
         </div>
@@ -61,10 +73,10 @@ const CreateTrip = () => {
           <label htmlFor="date">Votre date d'arrivée</label>
           <input
             type="date"
-            name="arrival_date"
-            value={arrivalDate}
+            name="end_date"
+            value={endDate}
             onChange={handleChangeTripField}
-            id="arrival_date"
+            id="end_date"
             required
           />
         </div>

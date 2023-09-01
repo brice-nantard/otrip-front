@@ -18,9 +18,12 @@ import Error from '../Error/Error';
 import Footer from '../Footer/Footer';
 import Contact from '../Contact/Contact';
 import UserAccount from '../UserAccount/UserAccount';
+import Loading from './Loading/Loading';
+
 import './App.scss';
 
 const App = () => {
+  const isTripsLoaded = useSelector((state) => state.trip.isTripsLoaded);
   // mise en place de la protection de certaines routes si l'utilisateur n'est pas connecté
   const isLogged = useSelector((state) => state.user.logged);
 
@@ -55,6 +58,10 @@ const App = () => {
     
   }, [dispatch]);
 
+  // si les voyages ne sont pas chargés, on remplace toute l'appli par le loader
+  if (!isTripsLoaded) {
+    return <Loading />;
+  }
   // si l'utilisateur est connecté, il a accès à toutes les routes
   // s'il n'est pas connecté, il a accès uniquement à Home, Contact, Error et se connecter et créer un compte
   return (

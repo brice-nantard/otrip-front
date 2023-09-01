@@ -13,8 +13,6 @@ export const initialState = {
   password: '',
   // token JWT (quand l'utilisateur est connecté)
   token: '',
-  // id de l'utilisateur
-  id: '',
 };
 
 const userReducer = (state = initialState, action = {}) => {
@@ -43,7 +41,6 @@ const userReducer = (state = initialState, action = {}) => {
         token: '',
         username: '',
         password: '',
-        // id: '',
       };
     
     case HANDLE_LOGOUT:
@@ -52,7 +49,6 @@ const userReducer = (state = initialState, action = {}) => {
         token: '',
         username: '',
         password: '',
-        id: '',
       };
 
     default:

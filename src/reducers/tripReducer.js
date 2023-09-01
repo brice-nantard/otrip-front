@@ -2,6 +2,7 @@
 /* eslint-disable no-else-return */
 /* eslint-disable no-restricted-globals */
 import { SAVE_USER_TRIPS, SAVE_HOME_TRIPS, CHANGE_CREATE_TRIP_FIELD } from "../actions/trip";
+import { HANDLE_LOGOUT } from "../actions/user";
 
 const DESTINATION_FIELD = 'destination';
 const START_DATE_FIELD = 'start_date';
@@ -18,10 +19,10 @@ export const initialState = {
 const tripReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SAVE_USER_TRIPS:
-      // console.log(action.trip);
+      // console.log(action.userTrip);
       return {
         ...state,
-        userTrips: action.trip,
+        userTrips: action.userTrip,
       };
     
     case SAVE_HOME_TRIPS:
@@ -51,6 +52,15 @@ const tripReducer = (state = initialState, action = {}) => {
           }
         }
       return state;
+
+      case HANDLE_LOGOUT:
+        return {
+          userTrips: [],
+          destination: '',
+          start_date: '',
+          end_date: '',
+        }
+
     default:
       return state;
   }

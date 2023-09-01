@@ -8,7 +8,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     case FETCH_USER_TRIPS:
       axios
         .get(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trips/random',
+          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/users',
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -17,9 +17,8 @@ const tripMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
         // enregistrement des données dans le local storage
-          localStorage.setItem('trips', JSON.stringify(response.data));
+          localStorage.setItem('userTrips', JSON.stringify(response.data));
           // console.log(response.data);
-          // console.log(response);
           store.dispatch(saveUserTrips(response.data));
           // console.log(store.getState());
         })

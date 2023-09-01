@@ -18,9 +18,9 @@ export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
 
-export const saveUserTrips = (trip) => ({
+export const saveUserTrips = (userTrip) => ({
   type: SAVE_USER_TRIPS,
-  trip,
+  userTrip,
 });
 
 export const fetchHomeTrips = () => ({

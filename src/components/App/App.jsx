@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { handleSuccessfulLogin } from '../../actions/user';
-import { fetchUserTrips, fetchHomeTrips } from '../../actions/trip';
+import { fetchHomeTrips, fetchUserTrips } from '../../actions/trip';
 
 import Header from '../Header/Header';
 import Home from '../Home/Home';
@@ -28,36 +28,33 @@ const App = () => {
   const isLogged = useSelector((state) => state.user.logged);
 
   const dispatch = useDispatch();
-  // stocker les voyages de l'utilisateur dans le state
-  const [tripData, setTripData] = useState([]);
-
   // stocker les voyages de la Home dans le state
   const [homeTripsData, setHomeTripsData] = useState([]);
+  // stocker les voyages de l'utilisateur dans le state
+  const [userTripsData, setUserTripsData] = useState([]);
 
   useEffect(() =>  {
     // récupération des identifiants de l'utilisateur depuis le localStorage
     const storedToken = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
-    const storedUserId = localStorage.getItem('userId');
     // si les deux valeurs sont présentes dans le localStorage, la reconnexion se fera automatiquement au refresh
     if (storedToken && storedUsername) {
-      dispatch(handleSuccessfulLogin(storedToken, storedUsername, storedUserId));
-    }
-
-    // récupération des voyages de l'utilisateur connecté de la Home depuis le localStorage
-    const storedTrips = JSON.parse(localStorage.getItem('trips'));
-    if (storedTrips) {
-      setTripData(storedTrips);
-    }
+      dispatch(handleSuccessfulLogin(storedToken, storedUsername));
+    };
 
     // récupération des voyages de la Home depuis le localStorage
     const storedHomeTrips = JSON.parse(localStorage.getItem('homeTrips'));
     if (storedHomeTrips) {
       setHomeTripsData(storedHomeTrips);
     }
-
-    dispatch(fetchUserTrips());
     dispatch(fetchHomeTrips());
+
+    // récupération des voyages de l'utilisateur depuis le localStorage
+    const storedUserTrips = JSON.parse(localStorage.getItem('userTrips'));
+    if (storedUserTrips) {
+      setUserTripsData(storedUserTrips);
+    }
+    dispatch(fetchUserTrips());
     
   }, [dispatch]);
 
@@ -79,7 +76,7 @@ const App = () => {
               <Route path="/se-connecter" element={<LoginForm />} />
               <Route path="/creer-un-compte" element={<CreateAccount />} />
               <Route path="/mon-compte" element={<UserAccount />} />
-              <Route path="/mes-voyages" element={<MesVoyages tripData={tripData} />} />
+              <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTripsData}/>} />
               <Route path="/creer-un-voyage" element={<CreateTrip />} />
               <Route path="/gestion-activite" element={<Activity />} />
             </>

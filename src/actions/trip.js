@@ -12,6 +12,8 @@ export const CHANGE_CREATE_TRIP_FIELD = 'CHANGE_CREATE_TRIP_FIELD';
 // action interceptée par le middleware pour gérer l'API de création d'un voyage
 export const SUBMIT_CREATE_TRIP = 'SUBMIT_CREATE_TRIP';
 
+export const HANDLE_SUCCESSFUL_CREATE_TRIP = 'HANDLE_SUCCESSFUL_CREATE_TRIP';
+
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
@@ -39,3 +41,8 @@ export const changeCreateTripField = (name, newValue) => ({
 export const submitCreateTrip = () => ({
   type: SUBMIT_CREATE_TRIP,
 });
+
+export const handleSuccessfulCreateTrip = (newTrip) => ({
+  type: HANDLE_SUCCESSFUL_CREATE_TRIP,
+  newTrip,
+}); 

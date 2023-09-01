@@ -13,15 +13,21 @@ export const initialState = {
   destination: '',
   start_date: '',
   end_date: '',
+  // indique si les voyages sont chargés
+  isTripsLoaded: false,
 };
 
 const tripReducer = (state = initialState, action = {}) => {
+  const {name} = action;
+
   switch (action.type) {
     case SAVE_USER_TRIPS:
       // console.log(action.trip);
       return {
         ...state,
         userTrips: action.trip,
+        // on indique que les voyages sont chargés
+        isTripsLoaded: true,
       };
     
     case SAVE_HOME_TRIPS:
@@ -29,10 +35,11 @@ const tripReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         homeTrips: action.homeTrip,
+        // on indique que les voyages sont chargés
+        isTripsLoaded: true,
       }
     
     case CHANGE_CREATE_TRIP_FIELD:
-      const name = action.name;
       
       if (name === DESTINATION_FIELD) {
         return {

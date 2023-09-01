@@ -35,6 +35,8 @@ const tripReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         homeTrips: action.homeTrip,
+        // on indique que les voyages sont chargés
+        isTripsLoaded: true,
       }
     
     case CHANGE_CREATE_TRIP_FIELD:

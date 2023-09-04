@@ -8,6 +8,12 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const HANDLE_SUCCESSFUL_LOGIN = 'HANDLE_SUCCESSFUL_LOGIN';
 // action déclenchée à la déconnexion de l'utilisateur (vide le state)
 export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
+// action pour la gestion des champs du formulaire de création d'un compte
+export const CHANGE_CREATE_ACCOUNT_FIELD = 'CHANGE_CREATE_ACCOUNT_FIELD';
+
+export const SUBMIT_CREATE_ACCOUNT = 'SUBMIT_CREATE_ACCOUNT';
+
+export const HANDLE_SUCCESSFUL_CREATE_ACCOUNT = 'HANDLE_SUCCESSFUL_CREATE_ACCOUNT';
 
 export const changeLoginField = (name, newValue) => ({
   type: CHANGE_LOGIN_FIELD,
@@ -19,7 +25,7 @@ export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
 });
 
-export const handleSuccessfulLogin = (username, token, id) => ({
+export const handleSuccessfulLogin = (username, token) => ({
   type: HANDLE_SUCCESSFUL_LOGIN,
   username,
   token,
@@ -27,4 +33,21 @@ export const handleSuccessfulLogin = (username, token, id) => ({
 
 export const handleLogout = () => ({
   type: HANDLE_LOGOUT,
+});
+
+export const changeCreateAccountField = (name, newValue) => ({
+  type: CHANGE_CREATE_ACCOUNT_FIELD,
+  name,
+  newValue,
+});
+
+export const submitCreateAccount = () => ({
+  type: SUBMIT_CREATE_ACCOUNT,
+});
+
+export const handleSuccessfulCreateAccount = (alias, email, password) => ({
+  type: HANDLE_SUCCESSFUL_CREATE_ACCOUNT,
+  alias,
+  email,
+  password,
 });

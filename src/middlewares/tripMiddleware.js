@@ -1,7 +1,13 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
-import { FETCH_HOME_TRIPS, FETCH_USER_TRIPS, SUBMIT_CREATE_TRIP, saveHomeTrips, saveUserTrips } from '../actions/trip';
+import {
+  FETCH_HOME_TRIPS,
+  FETCH_USER_TRIPS,
+  SUBMIT_CREATE_TRIP,
+  saveHomeTrips,
+  saveUserTrips
+} from '../actions/trip';
 
 const tripMiddleware = (store) => (next) => (action) => {
   switch (action.type) {

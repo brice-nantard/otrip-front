@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ import CreateTrip from '../CreateTrip/CreateTrip';
 import Activity from '../Activity/Activity';
 import Error from '../Error/Error';
 import Footer from '../Footer/Footer';
-import Contact from '../Contact/Contact';
+// import Contact from '../Contact/Contact';
 import UserAccount from '../UserAccount/UserAccount';
 import Loading from './Loading/Loading';
 
@@ -71,7 +71,7 @@ const App = () => {
           {isLogged ? (
             <>
               <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
-              <Route path="/contact" element={<Contact />} />
+              {/* <Route path="/contact" element={<Contact />} /> */}
               <Route path="*" element={<Error />} />
               <Route path="/se-connecter" element={<LoginForm />} />
               <Route path="/creer-un-compte" element={<CreateAccount />} />
@@ -83,7 +83,7 @@ const App = () => {
           ) : (
             <>
               <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
-              <Route path="/contact" element={<Contact />} />
+              {/* <Route path="/contact" element={<Contact />} /> */}
               <Route path="*" element={<Error />} />
               <Route path="/se-connecter" element={<LoginForm />} />
               <Route path="/creer-un-compte" element={<CreateAccount />} />

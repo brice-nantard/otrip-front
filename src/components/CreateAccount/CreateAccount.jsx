@@ -23,9 +23,9 @@ const CreateAccount = () => {
   // envoi du formulaire
   const handleSubmitCreateAccount = (event) => {
     event.preventDefault();
-
-    dispatch(submitCreateAccount());
-
+    const userToken = localStorage.getItem('token');
+    
+    dispatch(submitCreateAccount(userToken));
   };
 
   return (

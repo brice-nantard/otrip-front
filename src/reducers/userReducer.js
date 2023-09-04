@@ -86,6 +86,7 @@ const userReducer = (state = initialState, action = {}) => {
         ...state,
         logged: true,
         // sécurité : on efface les identifiants dès qu'on en a plus besoin
+        alias: '',
         email: '',
         password: '',
       }

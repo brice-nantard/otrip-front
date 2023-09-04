@@ -6,16 +6,18 @@ import './CreateTrip.scss';
 import { changeCreateTripField, submitCreateTrip } from '../../actions/trip';
 
 const CreateTrip = () => {
-  const dispatch = useDispatch();
   const destination = useSelector((state) => state.trip.destination);
   const startDate = useSelector((state) => state.trip.start_date);
   const endDate = useSelector((state) => state.trip.end_date);
+
+  const dispatch = useDispatch();
 
   // convertir une date fr en date en
   const convertDateFormat = (date) => {
     return format(new Date(date), 'yyyy-MM-dd');
   };
   
+  // changement des champs du formulaire
   const handleChangeTripField = (event) => {
     const { name, value } = event.target;
     // si le champs est une date, convertir le format avant de stocker dans le state
@@ -26,15 +28,10 @@ const CreateTrip = () => {
     }
   };
 
+  // envoi du formulaire
   const handleSubmitCreateTrip = (event) => {
     event.preventDefault();
-    const newTrip = {
-      destination,
-      // Conversion pour l'envoi à l'API
-      startDate: convertDateFormat(startDate),
-      endDate: convertDateFormat(endDate),
-    };
-    dispatch(submitCreateTrip(newTrip));
+    dispatch(submitCreateTrip());
   };
 
   return (
@@ -46,7 +43,8 @@ const CreateTrip = () => {
 
       <form
         className="create-trip--form"
-        onSubmit={handleSubmitCreateTrip}>
+        onSubmit={handleSubmitCreateTrip}
+      >
         <div className="create-trip--form--input">
           <label htmlFor="destination">&#127757; Quelle est votre destination ?</label>
           <input
@@ -54,7 +52,6 @@ const CreateTrip = () => {
             name="destination"
             value={destination}
             onChange={handleChangeTripField}
-            id="destination"
             required
           />
         </div>
@@ -65,7 +62,6 @@ const CreateTrip = () => {
             name="start_date"
             value={startDate}
             onChange={handleChangeTripField}
-            id="start_date"
             required
           />
         </div>
@@ -76,7 +72,6 @@ const CreateTrip = () => {
             name="end_date"
             value={endDate}
             onChange={handleChangeTripField}
-            id="end_date"
             required
           />
         </div>

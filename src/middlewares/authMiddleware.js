@@ -55,7 +55,6 @@ const authMiddleware = (store) => (next) => (action) => {
        });
       break;
     default:
-      return next(action);
   }
   next(action);
 };

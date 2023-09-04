@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-else-return */
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
@@ -7,34 +7,65 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrashCan, faPenToSquare, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
+import { useState, useEffect } from 'react';
+import { useDispatch } from'react-redux';
+
 import VoyagesPasses from './VoyagesPasses/VoyagesPasses';
 
 import './MesVoyages.scss';
+import { deleteUserTrip } from '../../actions/trip';
 
 const MesVoyages = ({ userTripsData }) => {
+  // message de confirmation de suppression
+  const [confirmationDelete, setConfirmationDelete] = useState(false);
+
+  useEffect(() => {
+    if (confirmationDelete){
+      const timeout = setTimeout(() => {
+        setConfirmationDelete(false);
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [confirmationDelete]);
+
   // si pas de voyages trouvés, afficher le message d'erreur
   const noTripsFound = userTripsData.trips.length === 0;
+  const dispatch = useDispatch();
+
+  const handleDeleteTrip = (tripId) => {
+    dispatch(deleteUserTrip(tripId));
+    setConfirmationDelete(true);
+  }
 
   if (noTripsFound) {
-    <div className="mes-voyages">
-      <h1>Mes Voyages</h1>
-      <div className="mes-voyages--a-venir">
-        <h2 className="mes-voyages--a-venir-title">
-          Vous n'avez pas de voyage à venir
-          <NavLink to="/creer-un-voyage">
-            <span>
-            <FontAwesomeIcon className="add-trip-btn" icon={faCirclePlus} />
-            Planifier un nouveau voyage
-            </span>
-          </NavLink>
-        </h2>
+    return (
+      <div className="mes-voyages">
+        <h1>Mes Voyages</h1>
+        <div className="mes-voyages--a-venir">
+          <h2 className="mes-voyages--a-venir-title">
+            Vous n'avez pas de voyage à venir
+            <NavLink to="/creer-un-voyage">
+              <span>
+              <FontAwesomeIcon className="add-trip-btn" icon={faCirclePlus} />
+              Planifier un nouveau voyage
+              </span>
+            </NavLink>
+          </h2>
+        </div>
+        <VoyagesPasses />
       </div>
-    </div>
+    )
   }
 
   return (
     <div className="mes-voyages">
-      <h1>Mes Voyages</h1>
+      <h1>Mes Voyages
+        {confirmationDelete &&(
+          <span className="delete-msg">
+            Votre voyage a été supprimé avec succès !
+          </span>
+        )}
+      </h1>
       <div className="mes-voyages--a-venir">
         <h2 className="mes-voyages--a-venir-title">
           Mes voyages à venir
@@ -62,7 +93,11 @@ const MesVoyages = ({ userTripsData }) => {
                       <p>Ajouter/voir<br/>les activités</p>
                     </NavLink>
                   </div>
-                  <FontAwesomeIcon className="delete-icon" icon={faTrashCan} />
+                  <FontAwesomeIcon
+                    className="delete-icon"
+                    icon={faTrashCan}
+                    onClick={() => {handleDeleteTrip(userTrip.id)}}
+                  />
                   <FontAwesomeIcon className="edit-icon" icon={faPenToSquare} />
                 </div>
               </div>

@@ -77,7 +77,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       const {tripId} = action;
       axios
         .delete(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/delete/',
+          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/{tripId}',
         )
         .then((response) => {
           console.log(response);

@@ -74,19 +74,13 @@ const tripReducer = (state = initialState, action = {}) => {
     case DELETE_USER_TRIP:
       return {
         ...state,
-        userTrips: {
-          ...state.userTrips,
-          trip: state.userTrips.trip.filter((trip) => trip.id !== action.id),
-        },
+        userTrips: state.userTrips.trip.filter((trip) => trip.id !== action.id),
       }
 
     case HANDLE_SUCCESSFUL_DELETE_TRIP:
       return {
         ...state,
-        userTrips: {
-          ...state.userTrips,
-          trip: state.userTrips.trip.filter((trip) => trip.id !== action.id),
-        },
+        userTrips: state.userTrips.trip.filter((trip) => trip.id !== action.id),
       }
     default:
       return state;

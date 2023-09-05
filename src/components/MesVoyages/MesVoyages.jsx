@@ -35,7 +35,7 @@ const MesVoyages = ({ userTripsData }) => {
   const handleDeleteTrip = (tripId) => {
     dispatch(deleteUserTrip(tripId));
     setConfirmationDelete(true);
-  }
+  };
 
   if (noTripsFound) {
     return (

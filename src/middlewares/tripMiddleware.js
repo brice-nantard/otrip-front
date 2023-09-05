@@ -74,10 +74,10 @@ const tripMiddleware = (store) => (next) => (action) => {
       break;
 
     case DELETE_USER_TRIP:
-      const {tripId} = action;
+      const { tripId } = action;
       axios
         .delete(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/{tripId}',
+          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripId}`,
         )
         .then((response) => {
           console.log(response);

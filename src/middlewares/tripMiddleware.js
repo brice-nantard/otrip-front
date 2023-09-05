@@ -59,17 +59,22 @@ const tripMiddleware = (store) => (next) => (action) => {
             destination: store.getState().trip.destination,
             start_date: store.getState().trip.start_date,
             end_date: store.getState().trip.end_date,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           }
         )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           // enregistrement dans le state et envoi de l'utilisateur à l'API
           store.dispatch(
             handleSuccessfulCreateTrip(response.data.destination, response.data.start_date, response.data.end_date)
           );
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
       break;
 
@@ -80,12 +85,12 @@ const tripMiddleware = (store) => (next) => (action) => {
           `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripId}`,
         )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           // si suppression réussie, mettre à jour le state
           store.dispatch(handleSuccessfulDeleteTrip(tripId));          
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         })
       break;
     default:

@@ -26,7 +26,7 @@ const Home = ({ homeTripsData }) => {
           <div className="home-page--favorites-card-infos">
             <div className="home-page--favorites-card-text">
               <h2>{homeTrip.destination}</h2>
-              <p>Du {format(new Date(homeTrip.start_date), 'dd/MM/yyyy')} au {format(new Date(homeTrip.start_date), 'dd/MM/yyyy')}</p>
+              <p>Du {format(new Date(homeTrip.start_date), 'dd/MM/yyyy')} au {format(new Date(homeTrip.end_date), 'dd/MM/yyyy')}</p>
             </div>
             <div className="home-page--favorites-card-icons">
               <FontAwesomeIcon className="eye-icon" icon={faEye} />

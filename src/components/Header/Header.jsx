@@ -28,7 +28,7 @@ const Header = () => {
     // on dispatch l'action de déconnexion afin de réinitialiser le state
     await dispatch(handleLogout());
     // on redirige vers la page de login
-    navigate('/se-connecter');
+    navigate('/');
   };
 
   return (

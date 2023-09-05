@@ -9,6 +9,13 @@
     margin-bottom: 3rem;
     color: variables.$darkBlue;
     text-align: center;
+    span {
+      color: green;
+      font-weight: bold;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      display: block;
+    }
   }
 
   .mes-voyages--a-venir {

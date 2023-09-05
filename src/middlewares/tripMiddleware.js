@@ -1,10 +1,13 @@
-/* eslint-disable no-case-declarations */
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-case-declarations */
 import axios from 'axios';
 import {
+  DELETE_USER_TRIP,
   FETCH_HOME_TRIPS,
   FETCH_USER_TRIPS,
   SUBMIT_CREATE_TRIP,
+  handleSuccessfulCreateTrip,
+  handleSuccessfulDeleteTrip,
   saveHomeTrips,
   saveUserTrips
 } from '../actions/trip';
@@ -49,22 +52,41 @@ const tripMiddleware = (store) => (next) => (action) => {
       break;
     
     case SUBMIT_CREATE_TRIP:
-      const newTrip = {
-        destination: store.getState().trip.destination,
-        start_date: store.getState().trip.start_date,
-        end_date: store.getState().trip.end_date,
-      };
       axios
-      .post(
-        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/add',
-        newTrip,
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .post(
+          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/add',
+          {
+            destination: store.getState().trip.destination,
+            start_date: store.getState().trip.start_date,
+            end_date: store.getState().trip.end_date,
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          // enregistrement dans le state et envoi de l'utilisateur à l'API
+          store.dispatch(
+            handleSuccessfulCreateTrip(response.data.destination, response.data.start_date, response.data.end_date)
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+
+    case DELETE_USER_TRIP:
+      const { tripId } = action;
+      axios
+        .delete(
+          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripId}`,
+        )
+        .then((response) => {
+          console.log(response);
+          // si suppression réussie, mettre à jour le state
+          store.dispatch(handleSuccessfulDeleteTrip(tripId));          
+        })
+        .catch((error) => {
+          console.log(error);
+        })
       break;
     default:
   };

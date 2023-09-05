@@ -13,6 +13,10 @@ export const CHANGE_CREATE_TRIP_FIELD = 'CHANGE_CREATE_TRIP_FIELD';
 export const SUBMIT_CREATE_TRIP = 'SUBMIT_CREATE_TRIP';
 
 export const HANDLE_SUCCESSFUL_CREATE_TRIP = 'HANDLE_SUCCESSFUL_CREATE_TRIP';
+// action pour supprimer un voyage
+export const DELETE_USER_TRIP = 'DELETE_USER_TRIP';
+
+export const HANDLE_SUCCESSFUL_DELETE_TRIP = 'HANDLE_SUCCESSFUL_DELETE_TRIP';
 
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
@@ -42,7 +46,19 @@ export const submitCreateTrip = () => ({
   type: SUBMIT_CREATE_TRIP,
 });
 
-export const handleSuccessfulCreateTrip = (newTrip) => ({
+export const handleSuccessfulCreateTrip = (destination, start_date, end_date) => ({
   type: HANDLE_SUCCESSFUL_CREATE_TRIP,
-  newTrip,
-}); 
+  destination,
+  start_date,
+  end_date,
+});
+
+export const deleteUserTrip = (tripId) => ({
+  type: DELETE_USER_TRIP,
+  tripId,
+});
+
+export const handleSuccessfulDeleteTrip = (tripId) => ({
+  type: HANDLE_SUCCESSFUL_DELETE_TRIP,
+  tripId,
+});

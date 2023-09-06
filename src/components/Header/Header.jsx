@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -20,14 +20,14 @@ const Header = () => {
   const isLogged = useSelector((state) => state.user.logged);
 
   // gestion de la déconnexion utilisateur au click sur l'icone off
-  const logout = async () => {
+  const logout = () => {
     // on supprime les infos dans le localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    localStorage.removeItem('id');
+    localStorage.removeItem('userTrips');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
-    await dispatch(handleLogout());
-    // on redirige vers la page de login
+    dispatch(handleLogout());
+    // on redirige vers la page Home
     navigate('/');
   };
 

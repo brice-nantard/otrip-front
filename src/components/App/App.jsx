@@ -77,7 +77,7 @@ const App = () => {
               <Route path="/mon-compte" element={<UserAccount />} />
               <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTripsData}/>} />
               <Route path="/creer-un-voyage" element={<CreateTrip />} />
-              <Route path="/gestion-activite" element={<Activity />} />
+              <Route path="/gestion-activite/:voyageId" element={<Activity />} />
             </>
           ) : (
             <>

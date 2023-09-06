@@ -5,7 +5,9 @@ import {
   DELETE_USER_TRIP,
   FETCH_HOME_TRIPS,
   FETCH_USER_TRIPS,
+  SUBMIT_CREATE_ACTIVITY,
   SUBMIT_CREATE_TRIP,
+  handleSuccessfulCreateActivity,
   handleSuccessfulCreateTrip,
   handleSuccessfulDeleteTrip,
   saveHomeTrips,
@@ -68,7 +70,7 @@ const tripMiddleware = (store) => (next) => (action) => {
         )
         .then((response) => {
           // console.log(response);
-          // enregistrement dans le state et envoi de l'utilisateur à l'API
+          // enregistrement dans le state et envoi à l'API
           store.dispatch(
             handleSuccessfulCreateTrip(response.data.destination, response.data.start_date, response.data.end_date)
           );
@@ -92,6 +94,37 @@ const tripMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           // console.log(error);
         })
+      break;
+
+    case SUBMIT_CREATE_ACTIVITY:
+      axios
+        .post(
+          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripId}/step/add`,
+          {
+            place: store.getState().trip.place,
+            start_date: store.getState().trip.start_date,
+            end_date: store.getState().trip.end_date,
+            transport: store.getState().trip.transport,
+            accomodation: store.getState().trip.accomodation,
+            description: store.getState().trip.description,
+          },
+        )
+        .then((response) => {
+          // console.log(response);
+          // enregistrement dans le state et envoi de l'utilisateur à l'API
+          store.dispatch(
+            handleSuccessfulCreateActivity(
+              response.data.place,
+              response.data.start_date,
+              response.data.end_date,
+              response.data.transport,
+              response.data.accomodation,
+              response.data.description
+          ));
+        })
+        .catch((error) => {
+          // console.log(error);
+        });
       break;
     default:
   };

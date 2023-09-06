@@ -23,7 +23,6 @@ export const initialState = {
   alias: '',
   // email de l'utilisateur
   email: '',
-
 };
 
 const userReducer = (state = initialState, action = {}) => {

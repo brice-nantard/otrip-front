@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrashCan, faPenToSquare, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 import { useDispatch } from'react-redux';
@@ -16,6 +16,9 @@ import './MesVoyages.scss';
 import { deleteUserTrip } from '../../actions/trip';
 
 const MesVoyages = ({ userTripsData }) => {
+  // extraire l'id du voyage dans l'URL au clique sur l'ajout d'activité
+  const { voyageId } = useParams();
+  
   // message de confirmation de suppression
   const [confirmationDelete, setConfirmationDelete] = useState(false);
 
@@ -32,6 +35,7 @@ const MesVoyages = ({ userTripsData }) => {
   const noTripsFound = userTripsData.trips.length === 0;
   const dispatch = useDispatch();
 
+  // fonction pour supprimer un voyage
   const handleDeleteTrip = (tripId) => {
     dispatch(deleteUserTrip(tripId));
     setConfirmationDelete(true);
@@ -89,7 +93,7 @@ const MesVoyages = ({ userTripsData }) => {
                 <div className="mes-voyages--a-venir-icons">
                   <div className="mes-voyages--a-venir-add">
                     <FontAwesomeIcon className="add-icon" icon={faPlus} />
-                    <NavLink to="/gestion-activite">
+                    <NavLink to={`/gestion-activite/${userTrip.id}`}>
                       <p>Ajouter/voir<br/>les activités</p>
                     </NavLink>
                   </div>

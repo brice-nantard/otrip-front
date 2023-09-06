@@ -18,6 +18,12 @@ export const DELETE_USER_TRIP = 'DELETE_USER_TRIP';
 
 export const HANDLE_SUCCESSFUL_DELETE_TRIP = 'HANDLE_SUCCESSFUL_DELETE_TRIP';
 
+export const CHANGE_CREATE_ACTIVITY_FIELD = 'CHANGE_CREATE_ACTIVITY_FIELD';
+
+export const SUBMIT_CREATE_ACTIVITY = 'SUBMIT_CREATE_ACTIVITY';
+
+export const HANDLE_SUCCESSFUL_CREATE_ACTIVITY = 'HANDLE_SUCCESSFUL_CREATE_ACTIVITY';
+
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
@@ -61,4 +67,25 @@ export const deleteUserTrip = (tripId) => ({
 export const handleSuccessfulDeleteTrip = (tripId) => ({
   type: HANDLE_SUCCESSFUL_DELETE_TRIP,
   tripId,
+});
+
+export const changeCreateActivityField = (name, newValue) => ({
+  type: CHANGE_CREATE_ACTIVITY_FIELD,
+  name,
+  newValue,
+});
+
+export const submitCreateActivity = (tripId) => ({
+  type: SUBMIT_CREATE_ACTIVITY,
+  tripId,
+});
+
+export const handleSuccessfulCreateActivity = (place, start_date, end_date, transport, accomodation, description) => ({
+  type: HANDLE_SUCCESSFUL_CREATE_ACTIVITY,
+  place,
+  start_date,
+  end_date,
+  transport,
+  accomodation,
+  description,
 });

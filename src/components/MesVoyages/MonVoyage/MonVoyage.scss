@@ -1,0 +1,67 @@
+@use '../../../styles/variables';
+
+.mon-voyage {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  width: 40%;
+  margin: 0 auto;
+  color: variables.$darkBlue;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .mon-voyage--form {
+    display: flex;
+    justify-content: center;
+    margin: 0.8rem 0;
+    flex-direction: column;
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      font-size: 1rem;
+      margin-right: 1rem;
+      width: 100%;
+      padding: 0.3rem;
+      border-radius: 0.3rem;
+      border: 0.1rem solid variables.$darkBlue;
+      &:focus {
+        border: 0.1rem solid variables.$yellow;
+      }
+    }
+  }
+  button {
+    padding: 8px;
+    margin-top: 2rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: variables.$darkBlue;
+    color: white;
+    font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+      border: 1px solid variables.$darkBlue;
+      color: variables.$darkBlue;
+      font-weight: 700;
+    }
+  }
+
+  .mon-voyage--activite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 3rem auto;
+    border-top: 1px solid variables.$darkBlue;
+  }
+}

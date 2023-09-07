@@ -27,7 +27,7 @@ export const initialState = {
   // date de début de l'activité
   // start_date: '',
   // date de fin de l'activité
-  // end_date: '',
+  end_start: '',
   // transport 
   transport: '',
   // hébergement
@@ -116,10 +116,10 @@ const tripReducer = (state = initialState, action = {}) => {
           ...state,
           start_date : action.newValue,
         };
-      } else if (name === 'end_date') {
+      } else if (name === 'end_start') {
         return {
         ...state,
-          end_date : action.newValue,
+        end_start : action.newValue,
         };
       } else if (name === 'transport') {
         return {
@@ -144,7 +144,7 @@ const tripReducer = (state = initialState, action = {}) => {
         ...state,
         place: '',
         start_date: '',
-        end_date: '',
+        end_start: '',
         transport: '',
         accomodation: '',
         description: '',

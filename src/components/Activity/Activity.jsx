@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+
 import { useState } from 'react';
 import { format } from 'date-fns';
 import Dropzone from 'react-dropzone';
@@ -12,8 +14,12 @@ import './Activity.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCreateActivityField, submitCreateActivity } from '../../actions/trip';
 
-const Activity = (props) => {
-  const { voyageId } = props;
+const Activity = () => {
+  const { tripVoyageId } = useParams();
+
+  // const { tripVoyageId } = props;
+  // console.log(tripVoyageId);
+
   const dispatch = useDispatch();
 
   // liste des options des listes déroulantes
@@ -42,7 +48,7 @@ const Activity = (props) => {
   // state des champs de l'activité
   const lieu = useSelector((state) => state.trip.place);
   const startDate = useSelector((state) => state.trip.start_date);
-  const endDate = useSelector((state) => state.trip.end_date);
+  const endDate = useSelector((state) => state.trip.end_start);
   const transport = useSelector((state) => state.trip.transport);
   const hebergement = useSelector((state) => state.trip.accomodation);
   const description = useSelector((state) => state.trip.description);
@@ -63,23 +69,22 @@ const Activity = (props) => {
   const handleChangeInputValue = (event) => {
     const { name, value } = event.target;
     // si le champs est une date, convertir le format avant de stocker dans le state
-    if (name === 'start_date' || name === 'end_date') {
+    if (name === 'start_date' || name === 'end_start') {
       dispatch(changeCreateActivityField(name, convertDateFormat(value)));
     } else {
       dispatch(changeCreateActivityField(name, value));
     }
   }
 
-  // envoi du formulaire
+  // envoi du formulaire à l'API et dans la vue
   const handleSubmitCreateTrip = (event) => {
     event.preventDefault();
-    dispatch(submitCreateActivity());
+    dispatch(submitCreateActivity(tripVoyageId));
   };
   
   return (
     <div className="activite">
       <h1>Gestion des activités</h1>
-
       <form
         method="POST"
         onSubmit={handleSubmitCreateTrip}
@@ -108,7 +113,7 @@ const Activity = (props) => {
           <label htmlFor="date">Au</label>
           <input
             type="date"
-            name="end_date"
+            name="end_start"
             value={endDate}
             onChange={handleChangeInputValue}
             required
@@ -173,8 +178,8 @@ const Activity = (props) => {
   );
 };
 
-Activity.propTypes = {
-  voyageId: PropTypes.number.isRequired,
-};
+// Activity.propTypes = {
+//   tripVoyageId: PropTypes.number.isRequired,
+// };
 
 export default Activity;

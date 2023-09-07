@@ -11,6 +11,7 @@ import Home from '../Home/Home';
 import LoginForm from '../LoginForm/LoginForm';
 import CreateAccount from '../CreateAccount/CreateAccount';
 import MesVoyages from '../MesVoyages/MesVoyages';
+import MonVoyage from '../MesVoyages/MonVoyage/MonVoyage';
 import CreateTrip from '../CreateTrip/CreateTrip';
 import Activity from '../Activity/Activity';
 import ContactForm from '../ContactForm/ContactForm';
@@ -31,7 +32,7 @@ const App = () => {
   const [homeTripsData, setHomeTripsData] = useState([]);
   // stocker les voyages de l'utilisateur dans le state
   const [userTripsData, setUserTripsData] = useState([]);
-
+  
   useEffect(() =>  {
     // récupération des identifiants de l'utilisateur depuis le localStorage
     const storedToken = localStorage.getItem('token');
@@ -53,8 +54,7 @@ const App = () => {
     if (storedUserTrips) {
       setUserTripsData(storedUserTrips);
     }
-    dispatch(fetchUserTrips());
-    
+    dispatch(fetchUserTrips());    
   }, [dispatch]);
 
   // si les voyages ne sont pas chargés, on remplace toute l'appli par le loader
@@ -71,23 +71,23 @@ const App = () => {
             <>
               <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
               <Route path="/contact" element={<ContactForm />} />
-              <Route path="*" element={<Error />} />
               <Route path="/se-connecter" element={<LoginForm />} />
               <Route path="/creer-un-compte" element={<CreateAccount />} />
               <Route path="/mon-compte" element={<UserAccount />} />
               <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTripsData}/>} />
+              <Route path="/mon-voyage/:voyageId/:tripDestination" element={<MonVoyage userTripsData={userTripsData} />} />
               <Route path="/creer-un-voyage" element={<CreateTrip />} />
-              <Route path="/gestion-activite/:voyageId" element={<Activity />} />
+              <Route path="/gestion-activite/:tripVoyageId" element={<Activity />} />
             </>
           ) : (
             <>
               <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
               <Route path="/contact" element={<ContactForm />} />
-              <Route path="*" element={<Error />} />
               <Route path="/se-connecter" element={<LoginForm />} />
               <Route path="/creer-un-compte" element={<CreateAccount />} />
             </>
           )}
+          <Route path="*" element={<Error />} />
         </Routes>
       <Footer />
     </div>

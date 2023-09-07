@@ -24,6 +24,10 @@ export const SUBMIT_CREATE_ACTIVITY = 'SUBMIT_CREATE_ACTIVITY';
 
 export const HANDLE_SUCCESSFUL_CREATE_ACTIVITY = 'HANDLE_SUCCESSFUL_CREATE_ACTIVITY';
 
+export const FETCH_TRIP_ACTIVITY = 'FETCH_TRIP_ACTIVITY';
+
+export const SAVE_TRIP_ACTIVITY = 'SAVE_TRIP_ACTIVITY';
+
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
@@ -75,17 +79,27 @@ export const changeCreateActivityField = (name, newValue) => ({
   newValue,
 });
 
-export const submitCreateActivity = (tripId) => ({
+export const submitCreateActivity = (tripVoyageId) => ({
   type: SUBMIT_CREATE_ACTIVITY,
-  tripId,
+  tripVoyageId,
 });
 
-export const handleSuccessfulCreateActivity = (place, start_date, end_date, transport, accomodation, description) => ({
+export const handleSuccessfulCreateActivity = (place, start_date, end_start, transport, accomodation, description) => ({
   type: HANDLE_SUCCESSFUL_CREATE_ACTIVITY,
   place,
   start_date,
-  end_date,
+  end_start,
   transport,
   accomodation,
   description,
+});
+
+export const fetchTripActivity = (voyageId) => ({
+  type: FETCH_TRIP_ACTIVITY,
+  voyageId,
+});
+
+export const saveTripActivity = (tripActivity) => ({
+  type: SAVE_TRIP_ACTIVITY,
+  tripActivity,
 });

@@ -4,6 +4,7 @@
 /* eslint-disable no-case-declarations */
 import axios from 'axios';
 import {
+  DELETE_TRIP_ACTIVITY,
   DELETE_USER_TRIP,
   FETCH_HOME_TRIPS,
   FETCH_TRIP_ACTIVITY,
@@ -12,6 +13,7 @@ import {
   SUBMIT_CREATE_TRIP,
   handleSuccessfulCreateActivity,
   handleSuccessfulCreateTrip,
+  handleSuccessfulDeleteActivity,
   handleSuccessfulDeleteTrip,
   saveHomeTrips,
   saveTripActivity,
@@ -151,6 +153,22 @@ const tripMiddleware = (store) => (next) => (action) => {
           // enregistrement dans le local storage
           localStorage.setItem('tripActivity', JSON.stringify(response.data));
           store.dispatch(saveTripActivity(response.data));
+        })
+        .catch((error) => {
+          // console.log(error);
+        });
+      break;
+    
+    case DELETE_TRIP_ACTIVITY:
+      const { tripActivityId } = action;
+      axios
+        .delete(
+          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/step/${tripActivityId}`
+        )
+        .then((response) => {
+          // console.log(response);
+          // si suppression réussie, mettre à jour le state et le local storage
+          store.dispatch(handleSuccessfulDeleteActivity(tripActivityId));
         })
         .catch((error) => {
           // console.log(error);

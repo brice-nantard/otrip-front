@@ -27,8 +27,9 @@ const Header = () => {
     localStorage.removeItem('userTrips');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
     dispatch(handleLogout());
-    // on redirige vers la page Home
-    navigate('/');
+    // // on recharge l'appli et redirige vers la page Home
+    window.location.assign('/');
+    // navigate('/');
   };
 
   return (

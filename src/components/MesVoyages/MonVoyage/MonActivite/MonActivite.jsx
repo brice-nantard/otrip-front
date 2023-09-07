@@ -6,9 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
+import { useDispatch } from'react-redux';
+
 import { format } from 'date-fns';
+import { deleteTripActivity } from '../../../../actions/trip';
 
 const MonActivite = ({ tripActivity }) => {
+  const dispatch = useDispatch();
+
+  // suppression d'une activité
+  const handleDeleteActivity = (tripActivityId) => {
+    dispatch(deleteTripActivity(tripActivityId));
+    window.location.reload();
+  };
+
   return (
     <div className="mon-activite">
       <h1>Mes activités</h1>
@@ -31,10 +42,12 @@ const MonActivite = ({ tripActivity }) => {
                 <div className="accomodation-type">{activity.accomodation}</div>
               </div>
               <div className="activity-icons">
-              <NavLink to="">
                 <FontAwesomeIcon className="edit-icon" icon={faPenToSquare} />
-                <FontAwesomeIcon className="delete-icon" icon={faTrashCan} />
-              </NavLink>
+                <FontAwesomeIcon
+                  className="delete-icon"
+                  icon={faTrashCan}
+                  onClick={() => handleDeleteActivity(activity.id)}
+                />
               </div>
             </article>
         </li>

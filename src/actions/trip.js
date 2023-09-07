@@ -28,6 +28,13 @@ export const FETCH_TRIP_ACTIVITY = 'FETCH_TRIP_ACTIVITY';
 
 export const SAVE_TRIP_ACTIVITY = 'SAVE_TRIP_ACTIVITY';
 
+export const DELETE_TRIP_ACTIVITY = 'DELETE_TRIP_ACTIVITY';
+
+export const HANDLE_SUCCESSFUL_DELETE_ACTIVITY = 'HANDLE_SUCCESSFUL_DELETE_ACTIVITY';
+
+export const HANDLE_LOGOUT = 'HANDLE_LOGOUT';
+
+
 export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
@@ -102,4 +109,18 @@ export const fetchTripActivity = (voyageId) => ({
 export const saveTripActivity = (tripActivity) => ({
   type: SAVE_TRIP_ACTIVITY,
   tripActivity,
+});
+
+export const deleteTripActivity = (tripActivityId) => ({
+  type: DELETE_TRIP_ACTIVITY,
+  tripActivityId,
+});
+
+export const handleSuccessfulDeleteActivity = (tripActivityId) => ({
+  type: HANDLE_SUCCESSFUL_DELETE_ACTIVITY,
+  tripActivityId,
+});
+
+export const handleLogout = () => ({
+  type: HANDLE_LOGOUT,
 });

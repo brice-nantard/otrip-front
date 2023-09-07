@@ -9,7 +9,9 @@ import {
   HANDLE_SUCCESSFUL_DELETE_TRIP,
   CHANGE_CREATE_TRIP_FIELD,
   CHANGE_CREATE_ACTIVITY_FIELD,
-  HANDLE_SUCCESSFUL_CREATE_ACTIVITY
+  HANDLE_SUCCESSFUL_CREATE_ACTIVITY,
+  DELETE_TRIP_ACTIVITY,
+  HANDLE_SUCCESSFUL_DELETE_ACTIVITY
 } from "../actions/trip";
 
 import { HANDLE_LOGOUT } from "../actions/user";
@@ -88,6 +90,7 @@ const tripReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         userTrips: [],
+        isTripsLoaded: true,
         destination: '',
         start_date: '',
         end_date: '',
@@ -149,6 +152,21 @@ const tripReducer = (state = initialState, action = {}) => {
         accomodation: '',
         description: '',
       }
+    
+    case DELETE_TRIP_ACTIVITY:
+      return {
+        ...state,
+        place: '',
+        start_date: '',
+        end_start: '',
+        transport: '',
+        accomodation: '',
+      }
+    
+    // case HANDLE_SUCCESSFUL_DELETE_ACTIVITY:
+    //   return {
+
+    //   }
     default:
       return state;
   }

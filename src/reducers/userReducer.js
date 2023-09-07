@@ -12,6 +12,8 @@ const EMAIL_FIELD = 'email';
 const PASSWORD_FIELD = 'password';
 
 export const initialState = {
+  // indique si les voyages sont chargés
+  isTripsLoaded: false,
   logged: false,
   // email de l'utilisateur
   username: '',
@@ -55,10 +57,12 @@ const userReducer = (state = initialState, action = {}) => {
     
     case HANDLE_LOGOUT:
       return {
-        logged: false,
-        token: '',
-        username: '',
-        password: '',
+        ...initialState,
+        isTripsLoaded: true,
+        // logged: false,
+        // token: '',
+        // username: '',
+        // password: '',
       };
     
     case CHANGE_CREATE_ACCOUNT_FIELD:

@@ -8,29 +8,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { handleLogout } from '../../actions/user';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   const isLogged = useSelector((state) => state.user.logged);
 
+  // etat du processus de déconnexion
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   // gestion de la déconnexion utilisateur au click sur l'icone off
   const logout = () => {
+    setIsLoggingOut(true);
     // on supprime les infos dans le localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userTrips');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
     dispatch(handleLogout());
-    // // on recharge l'appli et redirige vers la page Home
-    window.location.assign('/');
-    // navigate('/');
   };
+
+  useEffect(() => {
+    if(!isLogged && isLoggingOut) {
+      window.location.assign('/');
+    }
+  }, [isLogged, isLoggingOut]);
 
   return (
     <header className="header">

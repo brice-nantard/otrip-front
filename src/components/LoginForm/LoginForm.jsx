@@ -42,7 +42,7 @@ const LoginForm = () => {
     <div className="login-form">
 
       <div className="left-side-img">
-        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login img" />
+        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login-img" />
       </div>
 
       <div className="right-side-form">
@@ -82,7 +82,7 @@ const LoginForm = () => {
               Se connecter
             </button>
             <Link to="/creer-un-compte">
-              <button type="submit" className="btn-createAccount">Créer un compte</button>
+              <button type="button" className="btn-createAccount">Créer un compte</button>
             </Link>
           </div>
         </form>

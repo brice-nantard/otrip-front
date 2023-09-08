@@ -51,10 +51,10 @@ const App = () => {
     dispatch(fetchHomeTrips());
 
     // récupération des voyages de l'utilisateur depuis le localStorage
-    const storedUserTrips = JSON.parse(localStorage.getItem('userTrips'));
-    if (storedUserTrips) {
-      setUserTripsData(storedUserTrips);
-    }
+    // const storedUserTrips = JSON.parse(localStorage.getItem('userTrips'));
+    // if (storedUserTrips) {
+    //   setUserTripsData(storedUserTrips);
+    // }
     dispatch(fetchUserTrips());
   }, [dispatch, isLogged]);
 
@@ -76,7 +76,7 @@ const App = () => {
         {isLogged ? (
           <>
             <Route path="/mon-compte" element={<UserAccount />} />
-            <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTripsData} />} />
+            <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTrips} />} />
             <Route path="/mon-voyage/:voyageId" element={<MonVoyage userTripsData={userTrips} />} />
             <Route path="/creer-un-voyage" element={<CreateTrip />} />
             <Route path="/gestion-activite/:tripVoyageId" element={<Activity />} />

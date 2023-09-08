@@ -8,10 +8,20 @@
   margin: 0 auto;
   color: variables.$darkBlue;
   h1 {
-    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-top: 2rem;
     text-align: center;
+    a {
+      margin: 2rem 0;
+      font-weight: 400;
+      font-size: 1.3rem;
+      &:hover {
+        color: variables.$yellow;
+      }
+    }
   }
 
   .activity-card{

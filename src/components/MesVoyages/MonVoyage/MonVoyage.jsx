@@ -100,6 +100,7 @@ const MonVoyage = () => {
     .then((response) => {
       // console.log(response.data);
       alert("Voyage modifié avec succès!");
+      window.location.assign('/mes-voyages');
     })
     .catch((error) => {
       // console.log(error);

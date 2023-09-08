@@ -24,6 +24,7 @@ const MonActivite = ({ tripActivity }) => {
     .then((response) => {
       // console.log(response.data);
       alert("Étape supprimée avec succès!");
+      window.location.assign('/mes-voyages');
     })
     .catch((error) => {
       // console.log(error);

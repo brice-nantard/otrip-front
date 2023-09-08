@@ -136,6 +136,7 @@ const tripMiddleware = (store) => (next) => (action) => {
               response.data.description
             )
           );
+          window.location.assign(`/mon-voyage/${tripVoyageId}`);
         })
         .catch((error) => {
           // console.log(error);

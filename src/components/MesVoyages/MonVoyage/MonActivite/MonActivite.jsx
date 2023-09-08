@@ -5,13 +5,14 @@ import axios from 'axios';
 
 import './MonActivite.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrashCan, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useParams } from 'react-router-dom';
 
 import { format } from 'date-fns';
 
 const MonActivite = ({ tripActivity }) => {
-  // console.log(tripActivity);
+  const tripVoyageId = useParams();
+    // console.log(tripActivity);
   // condition si pas d'activité trouvée
   const noActivityFound = !tripActivity || !tripActivity.steps || tripActivity.steps.length === 0;
 
@@ -24,7 +25,7 @@ const MonActivite = ({ tripActivity }) => {
     .then((response) => {
       // console.log(response.data);
       alert("Étape supprimée avec succès!");
-      window.location.assign('/mes-voyages');
+      window.location.reload();
     })
     .catch((error) => {
       // console.log(error);

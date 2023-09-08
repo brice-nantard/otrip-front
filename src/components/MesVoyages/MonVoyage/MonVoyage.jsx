@@ -6,8 +6,8 @@ import axios from 'axios';
 
 import './MonVoyage.scss';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchTripActivity } from '../../../actions/trip';
+// import { useDispatch } from 'react-redux';
+// import { fetchTripActivity } from '../../../actions/trip';
 
 import MonActivite from './MonActivite/MonActivite';
 
@@ -15,7 +15,7 @@ const MonVoyage = () => {
   const { voyageId } = useParams();
   // stocker les activités du voyage dans le state
   const [tripActivity, setTripActivity] = useState([]);
-  const [tripData, setTripData] = useState([]);
+  const [tripData, setTripData] = useState({});
 
 
   // récupération des activités du voyage depuis le localStorage
@@ -34,15 +34,19 @@ const MonVoyage = () => {
     // récupération des données du voyage
     axios
     .get(
-      'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/users',
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      }
+      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}`,
     )
     .then((response) => {
-      setTripData(response.data);
+      // formatage des dates
+      const formatStartDate = response.data[0].start_date.split("T")[0];
+      const formatEndDate = response.data[0].end_date.split("T")[0];
+
+      setTripData({
+        ...response.data[0],
+        start_date: formatStartDate,
+        end_date: formatEndDate,
+      });
+      // console.log(response.data);
     })
     .catch((error) => {
       // console.log(error);

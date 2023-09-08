@@ -17,7 +17,9 @@ import {
 import { HANDLE_LOGOUT } from "../actions/user";
 
 export const initialState = {
+  tripId: false,
   userTrips: [],
+  userTrip: {},
   homeTrips: [],
   destination: '',
   start_date: '',
@@ -82,6 +84,7 @@ const tripReducer = (state = initialState, action = {}) => {
     case HANDLE_SUCCESSFUL_CREATE_TRIP:
       return {
         ...state,
+        tripId: action.id,
         destination: '',
         start_date: '',
         end_date: '',

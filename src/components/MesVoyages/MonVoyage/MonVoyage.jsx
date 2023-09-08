@@ -2,6 +2,7 @@
 /* eslint-disable radix */
 // import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 import './MonVoyage.scss';
 import { useEffect, useState } from 'react';
@@ -11,20 +12,42 @@ import { fetchTripActivity } from '../../../actions/trip';
 import MonActivite from './MonActivite/MonActivite';
 
 const MonVoyage = () => {
-  const dispatch = useDispatch();
   const { voyageId } = useParams();
-
   // stocker les activités du voyage dans le state
   const [tripActivity, setTripActivity] = useState([]);
+  const [tripData, setTripData] = useState([]);
+
 
   // récupération des activités du voyage depuis le localStorage
-  useEffect(() =>  {
-    const storedTripActivity = JSON.parse(localStorage.getItem('tripActivity'));
-    if (storedTripActivity) {
-      setTripActivity(storedTripActivity);
-    }
-    dispatch(fetchTripActivity(voyageId));
-  }, [dispatch, voyageId]);
+  useEffect(() => {
+    axios
+      .get(
+        `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}/steps`
+      )
+      .then((response) => {
+        setTripActivity(response.data);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+    
+    // récupération des données du voyage
+    axios
+    .get(
+      'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/users',
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
+    .then((response) => {
+      setTripData(response.data);
+    })
+    .catch((error) => {
+      // console.log(error);
+    });
+  }, [voyageId]);    
 
   return (
     <div className="mon-voyage">
@@ -35,8 +58,8 @@ const MonVoyage = () => {
           <input
             type="text"
             name="destination"
-            // value={formData.destination}
-            // onChange={handleInputChange}
+            value={tripData.destination}
+          // onChange={handleInputChange}
           />
         </div>
         <div className="mon-voyage--form">
@@ -44,8 +67,8 @@ const MonVoyage = () => {
           <input
             type="date"
             name="start_date"
-            // value={formData.start_date}
-            // onChange={handleInputChange}
+            value={tripData.start_date}
+          // onChange={handleInputChange}
           />
         </div>
         <div className="mon-voyage--form">
@@ -53,8 +76,8 @@ const MonVoyage = () => {
           <input
             type="date"
             name="end_date"
-            // value={formData.end_date}
-            // onChange={handleInputChange}
+            value={tripData.end_date}
+          // onChange={handleInputChange}
           />
         </div>
         <button type="submit">Enregistrer les modifications</button>
@@ -65,19 +88,5 @@ const MonVoyage = () => {
     </div>
   )
 };
-
-// MonVoyage.propTypes = {
-//   userTripsData: PropTypes.shape({
-//     trips: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         id: PropTypes.number.isRequired,
-//         destination: PropTypes.string.isRequired,
-//         start_date: PropTypes.string.isRequired,
-//         end_date: PropTypes.string.isRequired,
-//         picture: PropTypes.string,
-//     })
-//   ).isRequired,
-// }).isRequired,
-// };
 
 export default MonVoyage;

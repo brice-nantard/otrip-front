@@ -2,6 +2,9 @@
 // actions en lien avec les voyages
 // action pour récupérer les voyages de l'utilisateur
 export const FETCH_USER_TRIPS = 'FETCH_USER_TRIPS';
+
+export const FETCH_USER_TRIP = 'FETCH_USER_TRIP';
+
 export const SAVE_USER_TRIPS = 'SAVE_USER_TRIPS';
 
 export const FETCH_HOME_TRIPS = 'FETCH_HOME_TRIPS';
@@ -39,6 +42,11 @@ export const fetchUserTrips = () => ({
   type: FETCH_USER_TRIPS,
 });
 
+export const fetchUserTrip = (tripId) => ({
+  type: FETCH_USER_TRIP,
+  tripId
+})
+
 export const saveUserTrips = (userTrip) => ({
   type: SAVE_USER_TRIPS,
   userTrip,
@@ -63,8 +71,9 @@ export const submitCreateTrip = () => ({
   type: SUBMIT_CREATE_TRIP,
 });
 
-export const handleSuccessfulCreateTrip = (destination, start_date, end_date) => ({
+export const handleSuccessfulCreateTrip = (id, destination, start_date, end_date) => ({
   type: HANDLE_SUCCESSFUL_CREATE_TRIP,
+  id,
   destination,
   start_date,
   end_date,

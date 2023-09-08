@@ -7,8 +7,8 @@ import {
   HANDLE_LOGOUT,
   HANDLE_SUCCESSFUL_CREATE_ACCOUNT,
   HANDLE_SUCCESSFUL_LOGIN,
-  HANDLE_SUCCESSFUL_SEND_MESSAGE
-} from "../actions/user";
+  HANDLE_SUCCESSFUL_SEND_MESSAGE,
+} from '../actions/user';
 
 const EMAIL_FIELD = 'email';
 const PASSWORD_FIELD = 'password';
@@ -33,20 +33,20 @@ export const initialState = {
 };
 
 const userReducer = (state = initialState, action = {}) => {
-  const { type, name, newValue, } = action;
+  const { type, name, newValue } = action;
 
   switch (type) {
     case CHANGE_LOGIN_FIELD:
       if (name === EMAIL_FIELD) {
         return {
-        ...state,
+          ...state,
           username: newValue,
         };
       } else if (name === PASSWORD_FIELD) {
         return {
           ...state,
           password: newValue,
-        }
+        };
       }
       return state;
 
@@ -59,7 +59,7 @@ const userReducer = (state = initialState, action = {}) => {
         username: '',
         password: '',
       };
-    
+
     case HANDLE_LOGOUT:
       return {
         ...initialState,
@@ -69,14 +69,14 @@ const userReducer = (state = initialState, action = {}) => {
         // username: '',
         // password: '',
       };
-    
+
     case CHANGE_CREATE_ACCOUNT_FIELD:
-      if (name === 'alias'){
+      if (name === 'alias') {
         return {
           ...state,
           alias: newValue,
         };
-      } else if (name === 'email'){
+      } else if (name === 'email') {
         return {
           ...state,
           email: newValue,
@@ -86,26 +86,26 @@ const userReducer = (state = initialState, action = {}) => {
           ...state,
           password: newValue,
         };
-      } 
+      }
       return state;
-    
+
     case HANDLE_SUCCESSFUL_CREATE_ACCOUNT:
       return {
         ...state,
-        logged: true,
+        // logged: true,
         // sécurité : on efface les identifiants dès qu'on en a plus besoin
         alias: '',
         email: '',
         password: '',
-      }
-    
+      };
+
     case CHANGE_CONTACT_FIELD:
-      if (name === 'name'){
+      if (name === 'name') {
         return {
           ...state,
           name: newValue,
         };
-      } else if (name === 'email'){
+      } else if (name === 'email') {
         return {
           ...state,
           email: newValue,
@@ -130,7 +130,7 @@ const userReducer = (state = initialState, action = {}) => {
         email: '',
         telephone: '',
         message: '',
-      }
+      };
     default:
       return state;
   }

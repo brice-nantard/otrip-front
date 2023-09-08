@@ -19,6 +19,7 @@ import { deleteUserTrip } from '../../actions/trip';
 const MesVoyages = ({ userTripsData }) => {  
   // message de confirmation de suppression
   const [confirmationDelete, setConfirmationDelete] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (confirmationDelete){
@@ -28,10 +29,13 @@ const MesVoyages = ({ userTripsData }) => {
       return () => clearTimeout(timeout);
     }
   }, [confirmationDelete]);
+  
+  if(!userTripsData.trips) {
+    return '';
+  }
 
   // si pas de voyages trouvés, afficher le message d'erreur
   const noTripsFound = userTripsData.trips.length === 0;
-  const dispatch = useDispatch();
 
   // fonction pour supprimer un voyage
   const handleDeleteTrip = (tripId) => {
@@ -88,7 +92,7 @@ const MesVoyages = ({ userTripsData }) => {
               <div className="mes-voyages--a-venir-infos">
                 <div className="mes-voyages--a-venir-text">
                   <h3>
-                    <NavLink to={`/mon-voyage/${userTrip.id}/${userTrip.destination}`}>
+                    <NavLink to={`/mon-voyage/${userTrip.id}`}>
                       {userTrip.destination}
                     </NavLink>
                   </h3>
@@ -106,7 +110,7 @@ const MesVoyages = ({ userTripsData }) => {
                     icon={faTrashCan}
                     onClick={() => {handleDeleteTrip(userTrip.id)}}
                   />
-                  <NavLink to={`/mon-voyage/${userTrip.id}/${userTrip.destination}`}>
+                  <NavLink to={`/mon-voyage/${userTrip.id}`}>
                     <FontAwesomeIcon className="edit-icon" icon={faPenToSquare} />
                   </NavLink>
                 </div>

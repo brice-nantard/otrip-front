@@ -78,10 +78,10 @@ const tripMiddleware = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          // console.log(response);
           // enregistrement dans le state et envoi à l'API
           store.dispatch(
             handleSuccessfulCreateTrip(
+              response.data.id,
               response.data.destination,
               response.data.start_date,
               response.data.end_date
@@ -142,38 +142,38 @@ const tripMiddleware = (store) => (next) => (action) => {
         });
       break;
 
-    case FETCH_TRIP_ACTIVITY:
-      const { voyageId } = action;
-      axios
-        .get(
-          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}/steps`
-        )
-        .then((response) => {
-          // console.log(response);
-          // enregistrement dans le local storage
-          localStorage.setItem('tripActivity', JSON.stringify(response.data));
-          store.dispatch(saveTripActivity(response.data));
-        })
-        .catch((error) => {
-          // console.log(error);
-        });
-      break;
+    // case FETCH_TRIP_ACTIVITY:
+    //   const { voyageId } = action;
+    //   axios
+    //     .get(
+    //       `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}/steps`
+    //     )
+    //     .then((response) => {
+    //       // console.log(response);
+    //       // enregistrement dans le local storage
+    //       localStorage.setItem('tripActivity', JSON.stringify(response.data));
+    //       store.dispatch(saveTripActivity(response.data));
+    //     })
+    //     .catch((error) => {
+    //       // console.log(error);
+    //     });
+    //   break;
     
-    case DELETE_TRIP_ACTIVITY:
-      const { tripActivityId } = action;
-      axios
-        .delete(
-          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/step/${tripActivityId}`
-        )
-        .then((response) => {
-          // console.log(response);
-          // si suppression réussie, mettre à jour le state et le local storage
-          store.dispatch(handleSuccessfulDeleteActivity(tripActivityId));
-        })
-        .catch((error) => {
-          // console.log(error);
-        });
-      break;
+    // case DELETE_TRIP_ACTIVITY:
+    //   const { tripActivityId } = action;
+    //   axios
+    //     .delete(
+    //       `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/step/${tripActivityId}`
+    //     )
+    //     .then((response) => {
+    //       // console.log(response);
+    //       // si suppression réussie, mettre à jour le state et le local storage
+    //       store.dispatch(handleSuccessfulDeleteActivity(tripActivityId));
+    //     })
+    //     .catch((error) => {
+    //       // console.log(error);
+    //     });
+    //   break;
     default:
   }
   // on passe l'action au suivant (middleware suivant ou reducer)

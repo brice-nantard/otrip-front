@@ -79,12 +79,15 @@ const UserAccount = () => {
       }
     )
     .then((response) => {
-      // console.log(response.data);
+      console.log(response.data);
       if (response.data.success) {
-        alert("Mot de passe modifié avec succès");
         setPassword("");
+        alert("Mot de passe modifié avec succès !");
       } else {
-        alert("Mot de passe actuel incorrecte");
+        alert("Mot de passe modifié avec succès !");
+        // deconnecter l'utilisateur
+        localStorage.removeItem('token');
+        window.location.assign("/se-connecter");
       }
     })
     .catch((error) => {

@@ -32,6 +32,7 @@ const MonActivite = ({ tripActivity }) => {
     })
   };
 
+  // Si pas d'activité trouvée, modifier l'affichage du composant
   if(noActivityFound) {
     return (
       <div className="mon-activite">

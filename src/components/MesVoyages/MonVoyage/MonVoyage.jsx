@@ -49,6 +49,8 @@ const MonVoyage = () => {
       const data = response.data[0];
       data.start_date = formatStartDate;
       data.end_date = formatEndDate;
+      console.log(data.user);
+
       delete data.user;
       setTripData(data);
       // console.log(response.data);

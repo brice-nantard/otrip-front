@@ -11,14 +11,27 @@ const UserAccount = () => {
     email: '',
   });
 
-  const [currentPassword, setCurrentPassword] = useState("");
+  const [password, setPassword] = useState({
+    password: '',
+    newPassword: '',
+  });
   const handleChangeCurrentPassword = (event) => {
-    setCurrentPassword(event.target.value);
+    setPassword(prevState => (
+      {
+      ...prevState,
+        password: event.target.value,
+      }
+    ));
   }
 
-  const [newPassword, setNewPassword] = useState("");
+  // const [newPassword, setNewPassword] = useState("");
   const handleChangeNewPassword = (event) => {
-    setNewPassword(event.target.value);
+    setPassword(prevState => (
+      {
+      ...prevState,
+        newPassword: event.target.value,
+      }
+    ));
   }
 
   // modification des champs input
@@ -50,30 +63,34 @@ const UserAccount = () => {
       });
     }, []);
 
-    // Route modification du mot de passe
-    const handleUpdatePassword = () => {
-      axios
-      .put(
-        `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/update-password`,
-        {
-          currentPassword,
-          newPassword,
+  // Route modification du mot de passe
+  const handleUpdatePassword = () => {
+    axios
+    .put(
+      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/resetpassword`,
+      {
+        password: password.password,
+        new_password: password.newPassword
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      )
-      .then((response) => {
-        // console.log(response.data);
-        alert("Votre mot de passe a été mis à jour.");
-        window.location.reload();
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
-    }
+      }
+    )
+    .then((response) => {
+      // console.log(response.data);
+      if (response.data.success) {
+        alert("Mot de passe modifié avec succès");
+        setPassword("");
+      } else {
+        alert("Mot de passe actuel incorrecte");
+      }
+    })
+    .catch((error) => {
+      // console.log(error);
+    });
+  };
   
   
   return (
@@ -90,11 +107,11 @@ const UserAccount = () => {
         </div>
         <div className="user-account--items">
           <label>Votre mot de passe actuel</label>
-          <input type="password" name="currentPassword" value={currentPassword} onChange={handleChangeCurrentPassword}/>
+          <input type="password" name="password" value={password.password} onChange={handleChangeCurrentPassword}/>
         </div>
         <div className="user-account--items">
           <label>Choisissez votre nouveau mot de passe</label>
-          <input type="password" name="newPassword" value={newPassword} onChange={handleChangeNewPassword} />
+          <input type="password" name="new_password" value={password.new_password} onChange={handleChangeNewPassword} />
         </div>
         <button type="button" onClick={handleUpdatePassword} className="edit-btn">Enregistrer les modifications</button>
         <button type="submit" className="delete-btn">Supprimer mon compte</button>

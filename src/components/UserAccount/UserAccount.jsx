@@ -79,7 +79,7 @@ const UserAccount = () => {
       }
     )
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.success) {
         setPassword("");
         alert("Mot de passe modifié avec succès !");

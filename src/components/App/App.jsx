@@ -11,6 +11,7 @@ import Home from '../Home/Home';
 import LoginForm from '../LoginForm/LoginForm';
 import CreateAccount from '../CreateAccount/CreateAccount';
 import MesVoyages from '../MesVoyages/MesVoyages';
+import MonVoyage from '../MesVoyages/MonVoyage/MonVoyage';
 import CreateTrip from '../CreateTrip/CreateTrip';
 import Activity from '../Activity/Activity';
 import ContactForm from '../ContactForm/ContactForm';
@@ -25,6 +26,7 @@ const App = () => {
   const isTripsLoaded = useSelector((state) => state.trip.isTripsLoaded);
   // mise en place de la protection de certaines routes si l'utilisateur n'est pas connecté
   const isLogged = useSelector((state) => state.user.logged);
+  const userTrips = useSelector((state) => state.trip.userTrips);
 
   const dispatch = useDispatch();
   // stocker les voyages de la Home dans le state
@@ -32,7 +34,7 @@ const App = () => {
   // stocker les voyages de l'utilisateur dans le state
   const [userTripsData, setUserTripsData] = useState([]);
 
-  useEffect(() =>  {
+  useEffect(() => {
     // récupération des identifiants de l'utilisateur depuis le localStorage
     const storedToken = localStorage.getItem('token');
     const storedUsername = localStorage.getItem('username');
@@ -49,13 +51,12 @@ const App = () => {
     dispatch(fetchHomeTrips());
 
     // récupération des voyages de l'utilisateur depuis le localStorage
-    const storedUserTrips = JSON.parse(localStorage.getItem('userTrips'));
-    if (storedUserTrips) {
-      setUserTripsData(storedUserTrips);
-    }
+    // const storedUserTrips = JSON.parse(localStorage.getItem('userTrips'));
+    // if (storedUserTrips) {
+    //   setUserTripsData(storedUserTrips);
+    // }
     dispatch(fetchUserTrips());
-    
-  }, [dispatch]);
+  }, [dispatch, isLogged]);
 
   // si les voyages ne sont pas chargés, on remplace toute l'appli par le loader
   if (!isTripsLoaded) {
@@ -65,30 +66,27 @@ const App = () => {
   // s'il n'est pas connecté, il a accès uniquement à Home, Contact, Error et se connecter et créer un compte
   return (
     <div>
-      <Header /> 
-        <Routes>
-          {isLogged ? (
-            <>
-              <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
-              <Route path="/contact" element={<ContactForm />} />
-              <Route path="*" element={<Error />} />
-              <Route path="/se-connecter" element={<LoginForm />} />
-              <Route path="/creer-un-compte" element={<CreateAccount />} />
-              <Route path="/mon-compte" element={<UserAccount />} />
-              <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTripsData}/>} />
-              <Route path="/creer-un-voyage" element={<CreateTrip />} />
-              <Route path="/gestion-activite" element={<Activity />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<Home homeTripsData={homeTripsData}/>} />
-              <Route path="/contact" element={<ContactForm />} />
-              <Route path="*" element={<Error />} />
-              <Route path="/se-connecter" element={<LoginForm />} />
-              <Route path="/creer-un-compte" element={<CreateAccount />} />
-            </>
-          )}
-        </Routes>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home homeTripsData={homeTripsData} />} />
+        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/se-connecter" element={<LoginForm />} />
+        <Route path="/creer-un-compte" element={<CreateAccount />} />
+
+        {isLogged ? (
+          <>
+            <Route path="/mon-compte" element={<UserAccount />} />
+            <Route path="/mes-voyages" element={<MesVoyages userTripsData={userTrips} />} />
+            <Route path="/mon-voyage/:voyageId" element={<MonVoyage userTripsData={userTrips} />} />
+            <Route path="/creer-un-voyage" element={<CreateTrip />} />
+            <Route path="/gestion-activite/:tripVoyageId" element={<Activity />} />
+          </>
+        ) : (
+          <>
+          </>
+        )}
+        <Route path="*" element={<Error />} />
+      </Routes>
       <Footer />
     </div>
   );

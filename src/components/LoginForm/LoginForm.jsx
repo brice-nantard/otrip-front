@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import './LoginForm.scss';
+import { useEffect } from 'react';
 import { changeLoginField, submitLogin } from '../../actions/user';
 
 const LoginForm = () => {
+  const isLogged = useSelector((state) => state.user.logged);
   const emailValue = useSelector((state) => state.user.username);
   const passwordValue = useSelector((state) => state.user.password);
 
@@ -22,20 +24,25 @@ const LoginForm = () => {
   };
 
   // après soumission du formulaire de connexion :
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     // empeche le rechargement par défaut
     event.preventDefault();
     // appelle l'action pour soumettre la connexion
-    await dispatch(submitLogin());
-    // redirige vers la page mes-voyages
-    navigate('/mes-voyages');
+    dispatch(submitLogin());
   };
+
+  // redirection après soumission du formulaire
+  useEffect (() => {
+    if (isLogged) {
+      navigate('/mes-voyages');
+    }
+  }, [isLogged, navigate]);
 
   return (
     <div className="login-form">
 
       <div className="left-side-img">
-        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login img" />
+        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login-img" />
       </div>
 
       <div className="right-side-form">
@@ -75,7 +82,7 @@ const LoginForm = () => {
               Se connecter
             </button>
             <Link to="/creer-un-compte">
-              <button type="submit" className="btn-createAccount">Créer un compte</button>
+              <button type="button" className="btn-createAccount">Créer un compte</button>
             </Link>
           </div>
         </form>

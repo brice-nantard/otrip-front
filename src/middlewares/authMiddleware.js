@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
-import { SUBMIT_CREATE_ACCOUNT, SUBMIT_LOGIN, handleSuccessfulLogin, handleSuccessfulCreateAccount } from '../actions/user';
+import { SUBMIT_CREATE_ACCOUNT, SUBMIT_LOGIN, handleSuccessfulLogin, handleSuccessfulCreateAccount, SUBMIT_MESSAGE, handleSuccessfulSendMessage } from '../actions/user';
 import { fetchUserTrips } from '../actions/trip';
 
 const authMiddleware = (store) => (next) => (action) => {
@@ -53,6 +53,33 @@ const authMiddleware = (store) => (next) => (action) => {
        .catch((error) => {
         console.log(error);
        });
+      break;
+
+    case SUBMIT_MESSAGE:
+      axios
+       .post(
+        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/contact',
+        {
+          name: store.getState().user.name,
+          email: store.getState().user.email,
+          telephone: store.getState().user.telephone,
+          message: store.getState().user.message,
+        }
+       )
+       .then((response) => {
+          console.log(response);
+          store.dispatch(
+            handleSuccessfulSendMessage(
+              response.data.name,
+              response.data.email,
+              response.data.telephone,
+              response.data.message
+            )
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       break;
     default:
   }

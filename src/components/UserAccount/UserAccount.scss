@@ -1,26 +1,73 @@
 @use '../../styles/variables';
 
 .user-account {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
   h1 {
     font-size: 22px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 4rem;
   }
-  .user-account--items {
+
+  form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
-    width: 20%;
-    label {
-      margin-bottom: 0.6rem;
-      font-size: 14px;
-      font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 8rem;
+    
+    .user-account--items {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      width: 30%;
+      label {
+        font-size: 1rem;
+        padding-bottom: 10px;
+        font-weight: 600;
+        color: variables.$darkBlue;
+      }
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.4rem;
+        border-radius: 0.3rem;
+        border: 1px solid variables.$darkBlue;
+        font-size: 0.8rem;
+        font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+        &:focus {
+          outline: none;
+          border: 1px solid variables.$lightBlue;
+        }
+      }
+    }
+    button {
+      width: 30%;
+      padding: 0.5rem;
+      margin: 1rem 0;
+      border-radius: 0.3rem;
+      border: 1px solid variables.$darkBlue;
+      font-size: 0.8rem;
+      font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+      background-color: variables.$darkBlue;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff;
+        background-color: variables.$lightBlue;
+        border: 1px solid variables.$lightBlue;
+        color: variables.$darkBlue;
+      }
+    }
+    .delete-btn {
+      background-color: rgb(142, 15, 15);
+      border: 1px solid rgb(142, 15, 15);
+      &:hover {
+        background-color: rgb(142, 15, 15);
+        border: 1px solid rgb(142, 15, 15);
+        color: rgb(255, 255, 255);
+      }
     }
   }
 }

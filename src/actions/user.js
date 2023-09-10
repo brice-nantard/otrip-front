@@ -15,6 +15,12 @@ export const SUBMIT_CREATE_ACCOUNT = 'SUBMIT_CREATE_ACCOUNT';
 
 export const HANDLE_SUCCESSFUL_CREATE_ACCOUNT = 'HANDLE_SUCCESSFUL_CREATE_ACCOUNT';
 
+export const CHANGE_CONTACT_FIELD = 'CHANGE_CONTACT_FIELD';
+
+export const SUBMIT_MESSAGE = 'SUBMIT_MESSAGE';
+
+export const HANDLE_SUCCESSFUL_SEND_MESSAGE = 'HANDLE_SUCCESSFUL_SEND_MESSAGE';
+
 export const changeLoginField = (name, newValue) => ({
   type: CHANGE_LOGIN_FIELD,
   name,
@@ -50,4 +56,22 @@ export const handleSuccessfulCreateAccount = (alias, email, password) => ({
   alias,
   email,
   password,
+});
+
+export const changeContactField = (name, newValue) => ({
+  type: CHANGE_CONTACT_FIELD,
+  name,
+  newValue,
+});
+
+export const submitMessage = () => ({
+  type: SUBMIT_MESSAGE,
+});
+
+export const handleSuccessfulSendMessage = (name, email, telephone, message) => ({
+  type: HANDLE_SUCCESSFUL_SEND_MESSAGE,
+  name,
+  email,
+  telephone,
+  message,
 });

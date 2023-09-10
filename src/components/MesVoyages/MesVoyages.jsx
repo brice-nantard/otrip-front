@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-else-return */
@@ -15,9 +16,10 @@ import VoyagesPasses from './VoyagesPasses/VoyagesPasses';
 import './MesVoyages.scss';
 import { deleteUserTrip } from '../../actions/trip';
 
-const MesVoyages = ({ userTripsData }) => {
+const MesVoyages = ({ userTripsData }) => {  
   // message de confirmation de suppression
   const [confirmationDelete, setConfirmationDelete] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (confirmationDelete){
@@ -27,14 +29,20 @@ const MesVoyages = ({ userTripsData }) => {
       return () => clearTimeout(timeout);
     }
   }, [confirmationDelete]);
+  
+  if(!userTripsData.trips) {
+    return '';
+  }
 
   // si pas de voyages trouvés, afficher le message d'erreur
   const noTripsFound = userTripsData.trips.length === 0;
-  const dispatch = useDispatch();
 
+  // fonction pour supprimer un voyage
   const handleDeleteTrip = (tripId) => {
-    dispatch(deleteUserTrip(tripId));
-    setConfirmationDelete(true);
+    if(window.confirm('Voulez-vous vraiment supprimer ce voyage?')){
+      dispatch(deleteUserTrip(tripId));
+      setConfirmationDelete(true);
+    }
   };
 
   if (noTripsFound) {
@@ -83,13 +91,17 @@ const MesVoyages = ({ userTripsData }) => {
               {userTrip.picture && <img src={userTrip.picture} alt={userTrip.destination} />}
               <div className="mes-voyages--a-venir-infos">
                 <div className="mes-voyages--a-venir-text">
-                  <h3>{userTrip.destination}</h3>
+                  <h3>
+                    <NavLink to={`/mon-voyage/${userTrip.id}`}>
+                      {userTrip.destination}
+                    </NavLink>
+                  </h3>
                   <p>{format(new Date(userTrip.start_date), 'dd/MM/yyyy')} au {format(new Date(userTrip.end_date), 'dd/MM/yyyy')}</p>
                 </div>
                 <div className="mes-voyages--a-venir-icons">
                   <div className="mes-voyages--a-venir-add">
                     <FontAwesomeIcon className="add-icon" icon={faPlus} />
-                    <NavLink to="/gestion-activite">
+                    <NavLink to={`/gestion-activite/${userTrip.id}`}>
                       <p>Ajouter/voir<br/>les activités</p>
                     </NavLink>
                   </div>
@@ -98,7 +110,9 @@ const MesVoyages = ({ userTripsData }) => {
                     icon={faTrashCan}
                     onClick={() => {handleDeleteTrip(userTrip.id)}}
                   />
-                  <FontAwesomeIcon className="edit-icon" icon={faPenToSquare} />
+                  <NavLink to={`/mon-voyage/${userTrip.id}`}>
+                    <FontAwesomeIcon className="edit-icon" icon={faPenToSquare} />
+                  </NavLink>
                 </div>
               </div>
             </div>

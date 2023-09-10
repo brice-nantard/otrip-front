@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useDispatch, useSelector } from 'react-redux';
-
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import './CreateAccount.scss';
 
@@ -13,19 +12,21 @@ const CreateAccount = () => {
   const password = useSelector((state) => state.user.password);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // changement des champs du formulaire
   const handleChangeInput = (event) => {
-    const { name, value} = event.target;
+    const { name, value } = event.target;
     dispatch(changeCreateAccountField(name, value));
   };
-  
+
   // envoi du formulaire
   const handleSubmitCreateAccount = (event) => {
     event.preventDefault();
     const userToken = localStorage.getItem('token');
-    
+
     dispatch(submitCreateAccount(userToken));
+    navigate('/se-connecter');
   };
 
   return (
@@ -80,7 +81,7 @@ const CreateAccount = () => {
           <div className="login-form-btn">
             <button type="submit" className="btn-valider">Valider</button>
           </div>
-          
+
         </form>
       </div>
 

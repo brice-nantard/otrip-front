@@ -1,35 +1,42 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 import './Header.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { handleLogout } from '../../actions/user';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   const isLogged = useSelector((state) => state.user.logged);
 
+  // etat du processus de déconnexion
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
   // gestion de la déconnexion utilisateur au click sur l'icone off
-  const logout = async () => {
+  const logout = () => {
+    setIsLoggingOut(true);
     // on supprime les infos dans le localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    localStorage.removeItem('id');
+    localStorage.removeItem('userTrips');
     // on dispatch l'action de déconnexion afin de réinitialiser le state
-    await dispatch(handleLogout());
-    // on redirige vers la page de login
-    navigate('/');
+    dispatch(handleLogout());
   };
+
+  useEffect(() => {
+    if(!isLogged && isLoggingOut) {
+      window.location.assign('/');
+    }
+  }, [isLogged, isLoggingOut]);
 
   return (
     <header className="header">

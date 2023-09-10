@@ -1,0 +1,87 @@
+@use '../../../styles/variables';
+
+.mon-voyage {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: center;
+  width: 40%;
+  margin: 0 auto;
+  color: variables.$darkBlue;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .mon-voyage--form {
+    display: flex;
+    justify-content: center;
+    margin: 0.8rem 0;
+    flex-direction: column;
+    label {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+      color: variables.$darkBlue;
+      font-size: 1rem;
+      margin-right: 1rem;
+      width: 100%;
+      padding: 0.3rem;
+      border-radius: 0.3rem;
+      border: 0.1rem solid variables.$darkBlue;
+      &:focus {
+        border: 0.1rem solid variables.$yellow;
+      }
+    }
+  }
+
+  .mon-voyage--activite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 3rem auto;
+    border-top: 1px solid variables.$darkBlue;
+  }
+
+  .mon-voyage--btns {
+    display: flex;
+    justify-content: space-between;
+    button.edit-btn {
+      border: none;
+      background-color: #fff;
+      padding: 8px;
+      margin-top: 2rem;
+      font-size: 16px;
+      color: variables.$darkBlue;
+      font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+      cursor: pointer;
+      &:hover {
+        color: variables.$darkBlue;
+        text-decoration: underline;
+      }
+    }
+    button.add-btn {
+      padding: 8px;
+      margin-top: 2rem;
+      border-radius: 5px;
+      border: 1px solid variables.$darkBlue;
+      font-size: 16px;
+      background-color: variables.$darkBlue;
+      color: white;
+      font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+      cursor: pointer;
+      &:hover {
+        background-color: variables.$yellow;
+        border: 1px solid variables.$yellow;
+        color: variables.$darkBlue;
+      }
+    }
+  }
+}

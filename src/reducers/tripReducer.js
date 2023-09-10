@@ -1,17 +1,43 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-else-return */
 /* eslint-disable no-restricted-globals */
-import { SAVE_USER_TRIPS, SAVE_HOME_TRIPS, CHANGE_CREATE_TRIP_FIELD, HANDLE_SUCCESSFUL_CREATE_TRIP, DELETE_USER_TRIP, HANDLE_SUCCESSFUL_DELETE_TRIP } from "../actions/trip";
+import {
+  SAVE_USER_TRIPS,
+  SAVE_HOME_TRIPS,
+  HANDLE_SUCCESSFUL_CREATE_TRIP,
+  DELETE_USER_TRIP,
+  HANDLE_SUCCESSFUL_DELETE_TRIP,
+  CHANGE_CREATE_TRIP_FIELD,
+  CHANGE_CREATE_ACTIVITY_FIELD,
+  HANDLE_SUCCESSFUL_CREATE_ACTIVITY,
+  DELETE_TRIP_ACTIVITY,
+  HANDLE_SUCCESSFUL_DELETE_ACTIVITY
+} from "../actions/trip";
+
 import { HANDLE_LOGOUT } from "../actions/user";
 
 export const initialState = {
+  tripId: false,
   userTrips: [],
+  userTrip: {},
   homeTrips: [],
   destination: '',
   start_date: '',
   end_date: '',
   // indique si les voyages sont chargés
   isTripsLoaded: false,
+  // lieu de l'activité
+  place: '',
+  // date de début de l'activité
+  // start_date: '',
+  // date de fin de l'activité
+  end_start: '',
+  // transport 
+  transport: '',
+  // hébergement
+  accomodation: '',
+  // description de l'activité
+  description : '',
 };
 
 const tripReducer = (state = initialState, action = {}) => {
@@ -58,6 +84,7 @@ const tripReducer = (state = initialState, action = {}) => {
     case HANDLE_SUCCESSFUL_CREATE_TRIP:
       return {
         ...state,
+        tripId: action.id,
         destination: '',
         start_date: '',
         end_date: '',
@@ -66,6 +93,7 @@ const tripReducer = (state = initialState, action = {}) => {
     case HANDLE_LOGOUT:
       return {
         userTrips: [],
+        isTripsLoaded: true,
         destination: '',
         start_date: '',
         end_date: '',
@@ -82,6 +110,66 @@ const tripReducer = (state = initialState, action = {}) => {
         ...state,
         userTrips: state.userTrips.trip.filter((trip) => trip.id !== action.id),
       }
+
+    case CHANGE_CREATE_ACTIVITY_FIELD:
+      if (name === 'place') {
+        return {
+          ...state,
+          place : action.newValue,
+        };
+      } else if (name === 'start_date') {
+        return {
+          ...state,
+          start_date : action.newValue,
+        };
+      } else if (name === 'end_start') {
+        return {
+        ...state,
+        end_start : action.newValue,
+        };
+      } else if (name === 'transport') {
+        return {
+          ...state,
+          transport : action.newValue,
+        };
+      } else if (name === 'accomodation') {
+        return {
+        ...state,
+          accomodation : action.newValue,
+        };
+      } else if (name === 'description') {
+        return {
+          ...state,
+          description : action.newValue,
+        };
+      }
+      return state;
+
+    case HANDLE_SUCCESSFUL_CREATE_ACTIVITY:
+      return {
+        ...state,
+        place: '',
+        start_date: '',
+        end_start: '',
+        transport: '',
+        accomodation: '',
+        description: '',
+      }
+    
+    case DELETE_TRIP_ACTIVITY:
+      return {
+        ...state,
+        place: '',
+        start_date: '',
+        end_start: '',
+        transport: '',
+        accomodation: '',
+      }
+    
+    // case HANDLE_SUCCESSFUL_DELETE_ACTIVITY:
+    //   return {
+
+    //   }
     default:
       return state;
   }

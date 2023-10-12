@@ -41,8 +41,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-logo">
-        <img className="logo-desktop" src="../../src/assets/logo_otrip.png" alt="logo-otrip" />
-        <img className="logo-mobile" src="../../src/assets/logo-mobile.png" alt="logo-otrip" />
+        <img className="logo-desktop" src="/src/assets/logo_otrip.png" alt="logo-otrip" />
+        <img className="logo-mobile" src="/src/assets/logo-mobile.png" alt="logo-otrip" />
       </div>
 
       <div className="header-title">

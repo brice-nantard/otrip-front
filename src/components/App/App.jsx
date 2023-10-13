@@ -81,7 +81,7 @@ const App = () => {
             <Route path="/mon-voyage/:voyageId" element={<MonVoyage userTripsData={userTrips} />} />
             <Route path="/creer-un-voyage" element={<CreateTrip />} />
             <Route path="/gestion-activite/:tripVoyageId" element={<Activity />} />
-            <Route path="/back-office" element={<BackOffice />} />
+            <Route path="/backoffice" element={<BackOffice />} />
           </>
         ) : (
           <>

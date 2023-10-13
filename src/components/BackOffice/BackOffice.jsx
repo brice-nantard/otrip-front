@@ -1,28 +1,21 @@
 /* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import backMiddleware from '../../middlewares/backMiddleware'
 
-function BackOffice() {
-  useEffect(() => {
-    axios
-      .get('http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/back/users', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []); // Utilisez une dépendance vide pour déclencher cet appel lors du montage du composant.
-
+function BackOfficePage() {
+  
+  backMiddleware();
+ 
   return (
     <div>
-      {/* Votre contenu du back office ici */}
+      <h1>Back Office</h1>
+      {/* Contenu du back-office */}
     </div>
   );
 }
 
-export default BackOffice;
+export default BackOfficePage;
+
+
+

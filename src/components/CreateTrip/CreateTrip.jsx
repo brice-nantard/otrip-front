@@ -3,6 +3,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
+import React, {useState} from 'react';
+
+
 
 import './CreateTrip.scss';
 import { changeCreateTripField, submitCreateTrip } from '../../actions/trip';
@@ -13,6 +16,8 @@ const CreateTrip = () => {
   const startDate = useSelector((state) => state.trip.start_date);
   const endDate = useSelector((state) => state.trip.end_date);
   const tripId = useSelector((state) => state.trip.tripId);
+  
+
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -43,11 +48,12 @@ const CreateTrip = () => {
   const handleSubmitCreateTrip = (event) => {
     event.preventDefault();
     dispatch(submitCreateTrip());
+    navigate('/mes-voyages');
   };
 
   return (
     <div className="create-trip">
-      <div className="create-trip--cover">
+      <div className="create-trip--cover" >
         <img src={leosprspctive} alt="create-otrip" />
         <p>Planifiez votre voyage</p>
       </div>

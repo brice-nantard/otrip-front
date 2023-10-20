@@ -50,29 +50,29 @@
     .mes-voyages--a-venir-card {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       color: variables.$darkBlue;
-    
-      img {
-        width: auto;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        &:hover{
-          cursor: pointer;
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-          transform: scale(1.03);
-          transition: all 0.3s ease-in-out;
-        }
-      }
+      width: auto;
+      height: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.03);
+        transition: all 0.3s ease-in-out;
+        }}
+      
     
       .mes-voyages--a-venir-infos{
-        margin: 0 0.5rem;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items:center;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-top: 15rem;
         color: variables.$darkBlue;
-    
+      }
         .mes-voyages--a-venir-text{
           h3{
             margin: 0.5rem 0;
@@ -87,11 +87,8 @@
             font-size: 12px;
           }
         }
-    
         .mes-voyages--a-venir-icons{
           display: flex;
-          justify-content: space-between;
-          align-items: end;
           gap: 0.5rem;
           .delete-icon{
             cursor: pointer;
@@ -121,7 +118,7 @@
         }
       }
     }
-  }
+
 
   @media screen and (max-width: 910px) {
     .mes-voyages--a-venir {
@@ -151,4 +148,4 @@
         }
       }
   }
-}
+

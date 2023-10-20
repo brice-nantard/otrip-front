@@ -20,7 +20,7 @@ const MonActivite = ({ tripActivity }) => {
   const handleDeleteActivity = (stepId) => {
     axios
     .delete(
-      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/step/${stepId}`,
+      `${import.meta.env.VITE_OTRIP_BACK_URL}api/step/${stepId}`,
     )
     .then((response) => {
       // console.log(response.data);

@@ -26,7 +26,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     case FETCH_USER_TRIPS:
       axios
         .get(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/users',
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/users`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -48,7 +48,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     case FETCH_HOME_TRIPS:
       axios
         .get(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trips/random'
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/trips/random`
         )
         .then((response) => {
           // console.log(response);
@@ -65,7 +65,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     case SUBMIT_CREATE_TRIP:
       axios
         .post(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/add',
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/add`,
           {
             destination: store.getState().trip.destination,
             start_date: store.getState().trip.start_date,
@@ -97,7 +97,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       const { tripId } = action;
       axios
         .delete(
-          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripId}`
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${tripId}`
         )
         .then((response) => {
           // console.log(response);
@@ -113,7 +113,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       const { tripVoyageId } = action;
       axios
         .post(
-          `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${tripVoyageId}/step/add`,
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${tripVoyageId}/step/add`,
           {
             place: store.getState().trip.place,
             start_date: store.getState().trip.start_date,
@@ -147,7 +147,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     //   const { voyageId } = action;
     //   axios
     //     .get(
-    //       `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}/steps`
+    //       `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${voyageId}/steps`
     //     )
     //     .then((response) => {
     //       // console.log(response);
@@ -164,7 +164,7 @@ const tripMiddleware = (store) => (next) => (action) => {
     //   const { tripActivityId } = action;
     //   axios
     //     .delete(
-    //       `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/step/${tripActivityId}`
+    //       `${import.meta.env.VITE_OTRIP_BACK_URL}api/step/${tripActivityId}`
     //     )
     //     .then((response) => {
     //       // console.log(response);

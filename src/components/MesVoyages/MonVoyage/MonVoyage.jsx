@@ -28,7 +28,7 @@ const MonVoyage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}/steps`,
+        `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${voyageId}/steps`,
       )
       .then((response) => {
         setTripActivity(response.data);
@@ -36,30 +36,30 @@ const MonVoyage = () => {
       .catch((error) => {
         // console.log(error);
       });
-    
+
     // récupération des données du voyage
     axios
-    .get(
-      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}`,
-    )
-    .then((response) => {
-      // formatage des dates
-      const formatStartDate = response.data[0].start_date.split("T")[0];
-      const formatEndDate = response.data[0].end_date.split("T")[0];
-      const data = response.data[0];
-      data.start_date = formatStartDate;
-      data.end_date = formatEndDate;
-      console.log(data.user);
+      .get(
+        `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${voyageId}`,
+      )
+      .then((response) => {
+        // formatage des dates
+        const formatStartDate = response.data[0].start_date.split("T")[0];
+        const formatEndDate = response.data[0].end_date.split("T")[0];
+        const data = response.data[0];
+        data.start_date = formatStartDate;
+        data.end_date = formatEndDate;
+        console.log(data.user);
 
-      delete data.user;
-      setTripData(data);
-      // console.log(response.data);
-    })
-    .catch((error) => {
-      // console.log(error);
-    });
+        delete data.user;
+        setTripData(data);
+        // console.log(response.data);
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
   }, [voyageId]);
-  
+
   // convertir une date fr en date en
   const convertDateFormat = (date) => {
     return format(new Date(date), 'yyyy-MM-dd');
@@ -70,7 +70,7 @@ const MonVoyage = () => {
     const { name, value } = event.target;
     if (name === 'start_date') {
       setTripData({
-      ...tripData,
+        ...tripData,
         start_date: convertDateFormat(value),
       });
     } else if (name === 'end_date') {
@@ -90,23 +90,23 @@ const MonVoyage = () => {
   const handleSubmitModification = (event) => {
     event.preventDefault();
     axios
-    .put(
-      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/trip/${voyageId}`,
-      tripData,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      .put(
+        `${import.meta.env.VITE_OTRIP_BACK_URL}api/trip/${voyageId}`,
+        tripData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      },
-    )
-    .then((response) => {
-      // console.log(response.data);
-      alert("Voyage modifié avec succès!");
-      window.location.assign('/mes-voyages');
-    })
-    .catch((error) => {
-      // console.log(error);
-    })
+      )
+      .then((response) => {
+        // console.log(response.data);
+        alert("Voyage modifié avec succès!");
+        window.location.assign('/mes-voyages');
+      })
+      .catch((error) => {
+        // console.log(error);
+      })
   };
 
   return (

@@ -9,7 +9,7 @@ const authMiddleware = (store) => (next) => (action) => {
     case SUBMIT_LOGIN:
       axios
         .post(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/login_check',
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/login_check`,
           {
             username: store.getState().user.username,
             password: store.getState().user.password,
@@ -36,7 +36,7 @@ const authMiddleware = (store) => (next) => (action) => {
     case SUBMIT_CREATE_ACCOUNT:
       axios
         .post(
-          'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/login/create',
+          `${import.meta.env.VITE_OTRIP_BACK_URL}api/login/create`,
           {
             alias: store.getState().user.alias,
             email: store.getState().user.email,
@@ -58,7 +58,7 @@ const authMiddleware = (store) => (next) => (action) => {
     case SUBMIT_MESSAGE:
       axios
        .post(
-        'http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/contact',
+        `${import.meta.env.VITE_OTRIP_BACK_URL}contact`,
         {
           name: store.getState().user.name,
           email: store.getState().user.email,

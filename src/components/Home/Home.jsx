@@ -11,7 +11,7 @@ const Home = ({ homeTripsData }) => {
   return (
     <main className="home-page">
       <div className="home-page--cover">
-        <img src="../../src/assets/home-picture.jpg" alt="home-otrip" />
+        <img src="/src/assets/home-picture.jpg" alt="home-otrip" />
         <p>Regroupez vos informations et planifiez vos voyages sereinement</p>
       </div>
       

@@ -6,13 +6,15 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import rootreducer from '../reducers';
 
 import tripMiddleware from '../middlewares/tripMiddleware';
+import backMiddleware from '../middlewares/backMiddleware';
 import authMiddleware from '../middlewares/authMiddleware';
 
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
   applyMiddleware(
     tripMiddleware,
-    authMiddleware
+    authMiddleware,
+    backMiddleware
     // ... d'autres middlewares
   )
 );

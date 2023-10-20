@@ -19,6 +19,7 @@ import Error from '../Error/Error';
 import Footer from '../Footer/Footer';
 import UserAccount from '../UserAccount/UserAccount';
 import Loading from './Loading/Loading';
+import BackOffice from '../BackOffice/BackOffice'; 
 
 import './App.scss';
 
@@ -80,6 +81,7 @@ const App = () => {
             <Route path="/mon-voyage/:voyageId" element={<MonVoyage userTripsData={userTrips} />} />
             <Route path="/creer-un-voyage" element={<CreateTrip />} />
             <Route path="/gestion-activite/:tripVoyageId" element={<Activity />} />
+            <Route path="/backoffice" element={<BackOffice />} />
           </>
         ) : (
           <>

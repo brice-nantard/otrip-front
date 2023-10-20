@@ -18,7 +18,7 @@ const UserAccount = () => {
   const handleChangeCurrentPassword = (event) => {
     setPassword(prevState => (
       {
-      ...prevState,
+        ...prevState,
         password: event.target.value,
       }
     ));
@@ -28,7 +28,7 @@ const UserAccount = () => {
   const handleChangeNewPassword = (event) => {
     setPassword(prevState => (
       {
-      ...prevState,
+        ...prevState,
         newPassword: event.target.value,
       }
     ));
@@ -37,17 +37,17 @@ const UserAccount = () => {
   // modification des champs input
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-      setUserData({
-        ...userData,
-        [name]: value
-      });
+    setUserData({
+      ...userData,
+      [name]: value
+    });
   };
-  
+
   // route récupération des données de l'utilisateur
   useEffect(() => {
     axios
       .get(
-        `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/profile`,
+        `${import.meta.env.VITE_OTRIP_BACK_URL}api/profile`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -61,41 +61,41 @@ const UserAccount = () => {
       .catch((error) => {
         // console.log(error);
       });
-    }, []);
+  }, []);
 
   // Route modification du mot de passe
   const handleUpdatePassword = () => {
     axios
-    .put(
-      `http://manonsenechal-server.eddi.cloud/projet-12-o-trip-back/public/api/resetpassword`,
-      {
-        password: password.password,
-        new_password: password.newPassword
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      .put(
+        `${import.meta.env.VITE_OTRIP_BACK_URL}api/resetpassword`,
+        {
+          password: password.password,
+          new_password: password.newPassword
         },
-      }
-    )
-    .then((response) => {
-      // console.log(response.data);
-      if (response.data.success) {
-        setPassword("");
-        alert("Mot de passe modifié avec succès !");
-      } else {
-        alert("Mot de passe modifié avec succès !");
-        // deconnecter l'utilisateur
-        localStorage.removeItem('token');
-        window.location.assign("/se-connecter");
-      }
-    })
-    .catch((error) => {
-      // console.log(error);
-    });
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((response) => {
+        // console.log(response.data);
+        if (response.data.success) {
+          setPassword("");
+          alert("Mot de passe modifié avec succès !");
+        } else {
+          alert("Mot de passe modifié avec succès !");
+          // deconnecter l'utilisateur
+          localStorage.removeItem('token');
+          window.location.assign("/se-connecter");
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
   };
-  
-  
+
+
   return (
     <div className="user-account">
       <h1>Mon compte</h1>
@@ -106,11 +106,11 @@ const UserAccount = () => {
         </div>
         <div className="user-account--items">
           <label>Votre e-mail</label>
-          <input type="email" name="email" value={userData.email} onChange={handleInputChange}/>
+          <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
         </div>
         <div className="user-account--items">
           <label>Votre mot de passe actuel</label>
-          <input type="password" name="password" value={password.password} onChange={handleChangeCurrentPassword}/>
+          <input type="password" name="password" value={password.password} onChange={handleChangeCurrentPassword} />
         </div>
         <div className="user-account--items">
           <label>Choisissez votre nouveau mot de passe</label>

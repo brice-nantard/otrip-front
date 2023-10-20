@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './CreateAccount.scss';
 
 import { changeCreateAccountField, submitCreateAccount } from '../../actions/user';
+import dinoreichmuth from '../../assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg'
 
 const CreateAccount = () => {
   const pseudo = useSelector((state) => state.user.alias);
@@ -33,7 +34,7 @@ const CreateAccount = () => {
     <div className="create-account">
 
       <div className="left-side-img">
-        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login img" />
+        <img src={dinoreichmuth} alt="login img" />
       </div>
 
       <div className="right-side-form">

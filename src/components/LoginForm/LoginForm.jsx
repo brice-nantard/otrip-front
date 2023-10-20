@@ -7,6 +7,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './LoginForm.scss';
 import { useEffect } from 'react';
 import { changeLoginField, submitLogin } from '../../actions/user';
+import dinoreichmuth from '../../assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg';
 
 const LoginForm = () => {
   const isLogged = useSelector((state) => state.user.logged);
@@ -42,7 +43,7 @@ const LoginForm = () => {
     <div className="login-form">
 
       <div className="left-side-img">
-        <img src="../../src/assets/dino-reichmuth-A5rCN8626Ck-unsplash.jpg" alt="login-img" />
+        <img src={dinoreichmuth} alt="login-img" />
       </div>
 
       <div className="right-side-form">

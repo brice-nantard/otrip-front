@@ -2,6 +2,10 @@
 import { NavLink } from 'react-router-dom';
 
 import './Footer.scss';
+import facebook from '../../assets/facebook.svg';
+import instagram from '../../assets/instagram.svg';
+import twitter from '../../assets/x-twitter.svg';
+
 
 const Footer = () => {
   return (
@@ -9,11 +13,11 @@ const Footer = () => {
       <div className="footer-menu">
         <NavLink className="footer-menu-item" to="/contact">Contact</NavLink>
         <div className="footer-social-items">
-          <img className="footer-social-item" src="../../src/assets/facebook.svg" alt="facebook" />
+          <img className="footer-social-item" src={facebook} alt="facebook" />
           <a href="facebook.com">
-            <img className="footer-social-item" src="../../src/assets/instagram.svg" alt="instagram"/>
+            <img className="footer-social-item" src={instagram} alt="instagram"/>
           </a>
-          <img className="footer-social-item" src="../../src/assets/x-twitter.svg" alt="x-twitter" /> 
+          <img className="footer-social-item" src={twitter}alt="x-twitter" /> 
         </div>
                
       </div>

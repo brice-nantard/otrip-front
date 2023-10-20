@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 import './VoyagesPasses.scss';
+import taniamousinho from '../../../assets/tania-mousinho-vF0l0bqLRKY-unsplash.jpg';
 
 const VoyagesPasses = () => {
   return (
@@ -11,7 +12,7 @@ const VoyagesPasses = () => {
 
         <div className="mes-voyages--passes-list">
           <div className="mes-voyages--passes-card">
-            <img src="../../src/assets/tania-mousinho-vF0l0bqLRKY-unsplash.jpg" alt="lille" />
+            <img src={taniamousinho} alt="lille" />
             <div className="mes-voyages--passes-infos">
               <div className="mes-voyages--passes-text">
                 <h3>Santorin, Grèce</h3>

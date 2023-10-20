@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 
 import './CreateTrip.scss';
 import { changeCreateTripField, submitCreateTrip } from '../../actions/trip';
+import leosprspctive from '../../assets/leosprspctive-Zem1HSuXUuM-unsplash.jpg'
 
 const CreateTrip = () => {
   const destination = useSelector((state) => state.trip.destination);
@@ -47,7 +48,7 @@ const CreateTrip = () => {
   return (
     <div className="create-trip">
       <div className="create-trip--cover">
-        <img src="../../src/assets/leosprspctive-Zem1HSuXUuM-unsplash.jpg" alt="create-otrip" />
+        <img src={leosprspctive} alt="create-otrip" />
         <p>Planifiez votre voyage</p>
       </div>
 

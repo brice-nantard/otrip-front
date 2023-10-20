@@ -10,6 +10,8 @@ import { faBars, faCircleUser, faPowerOff } from '@fortawesome/free-solid-svg-ic
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import { handleLogout } from '../../actions/user';
+import logodesktop from '../../assets/logo_otrip.png';
+import logomobile from '../../assets/logo-mobile.png';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -41,8 +43,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-logo">
-        <img className="logo-desktop" src="/src/assets/logo_otrip.png" alt="logo-otrip" />
-        <img className="logo-mobile" src="/src/assets/logo-mobile.png" alt="logo-otrip" />
+        <img className="logo-desktop" src={logodesktop} alt="logo-otrip" />
+        <img className="logo-mobile" src={logomobile} alt="logo-otrip" />
       </div>
 
       <div className="header-title">

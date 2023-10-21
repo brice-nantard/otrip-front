@@ -14,9 +14,7 @@ const Footer = () => {
         <NavLink className="footer-menu-item" to="/contact">Contact</NavLink>
         <div className="footer-social-items">
           <img className="footer-social-item" src={facebook} alt="facebook" />
-          <a href="facebook.com">
-            <img className="footer-social-item" src={instagram} alt="instagram"/>
-          </a>
+          <img className="footer-social-item" src={instagram} alt="instagram"/>
           <img className="footer-social-item" src={twitter}alt="x-twitter" /> 
         </div>
                

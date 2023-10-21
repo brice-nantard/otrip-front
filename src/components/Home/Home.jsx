@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
 import PropTypes from 'prop-types';
-
+import {useState} from 'react';
 import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import homepicture from '../../assets/home-picture.jpg'
 import placeholder from '../../assets/placeholder.png';
 
-import {useState} from 'react';
 
 import './Home.scss';
 
@@ -29,7 +28,6 @@ const Home = ({ homeTripsData }) => {
       <div className="home-page--favorites">
         {homeTripsData.map((homeTrip) => (
           <div className="home-page--favorites-card" style={{ backgroundImage: `url(${backgroundImage})` }} key={homeTrip.id}>
-          <img src={homeTrip.picture} alt={homeTrip.destination} />
           <div className="home-page--favorites-card-infos">
             <div className="home-page--favorites-card-text">
               <h2>{homeTrip.destination}</h2>
